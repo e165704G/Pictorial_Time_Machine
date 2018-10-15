@@ -12,6 +12,9 @@ import AVFoundation
 
 class ViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     var img7 = UIImage(named:"iwamotoyama_ee-1200x880")!
+    var image2 = UIImage()
+    
+    @IBOutlet weak var openCVversionLabel: UILabel!
     
 
     @IBOutlet weak var cameraView: UIView!
@@ -24,6 +27,10 @@ class ViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //opencvの基礎　バージョンを表示
+        openCVversionLabel.text = OpenCVWrapper.openCVVersionString()
+        
         
         captureSesssion = AVCaptureSession()
         stillImageOutput = AVCapturePhotoOutput()
@@ -86,7 +93,7 @@ class ViewController: UIViewController, AVCapturePhotoCaptureDelegate {
             // JPEG形式で画像データを取得
             let imageData = photo.fileDataRepresentation()
             
-            let image = UIImage(data: imageData!)
+            image2 = UIImage(data: imageData!)!
             
             // アルバムに追加.
             
@@ -95,9 +102,20 @@ class ViewController: UIViewController, AVCapturePhotoCaptureDelegate {
             // フォトライブラリに保存
     }
     @IBAction func saveImage(_ sender: AnyObject ) {
-        
+        goToNextPage()
     }
-   
+    func goToNextPage(){
+        //指定したIDのSegueを初期化する。同時にパラメータを渡すことができる
+        self.performSegue(withIdentifier: "mySegue", sender:image2)
+    }
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "mySegue" {
+            let secondViewController = segue.destination as! Saveimage
+            secondViewController.image3 = image2
+        }
+    }
+    
+   @IBAction func backToTop(segue: UIStoryboardSegue) {}
     
 }
 

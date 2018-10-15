@@ -11,18 +11,29 @@ import AVFoundation
 
 class Saveimage: UIViewController {
 var img7 = UIImage(named:"iwamotoyama_ee-1200x880")!
+    var image3 = UIImage()
+   
     @IBOutlet weak var image1: UIImageView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        image1.image = img7
+        
+        image1.image = image3
         // Do any additional setup after loading the view.
     }
     
     @IBAction func Saveimg(_ sender: Any) {
-        UIImageWriteToSavedPhotosAlbum(img7, self, nil, nil)
+        UIImageWriteToSavedPhotosAlbum(image3, self, nil, nil)
     }
     
+    @IBAction func toGrayScaleButtonTouched(_ sender: Any) {
+        image1.image = OpenCVWrapper.makeGray(from: image1.image!)
+        image3 = OpenCVWrapper.makeGray(from: image1.image!)
+        
+        
+        
+    }
     /*
     // MARK: - Navigation
 
