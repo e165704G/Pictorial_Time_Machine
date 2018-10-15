@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		74674C5921737E5000C9E32D /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74674C5821737E4F00C9E32D /* opencv2.framework */; };
+		74674C5D2173827000C9E32D /* OpenCVWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 74674C5C2173827000C9E32D /* OpenCVWrapper.mm */; };
 		74BF3499216B19D20087F124 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BF3498216B19D20087F124 /* AppDelegate.swift */; };
 		74BF349B216B19D20087F124 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BF349A216B19D20087F124 /* ViewController.swift */; };
 		74BF349E216B19D20087F124 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74BF349C216B19D20087F124 /* Main.storyboard */; };
@@ -27,6 +29,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		74674C5821737E4F00C9E32D /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
+		74674C5A2173827000C9E32D /* Pictorial_Time_Machine2-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pictorial_Time_Machine2-Bridging-Header.h"; sourceTree = "<group>"; };
+		74674C5B2173827000C9E32D /* OpenCVWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenCVWrapper.h; sourceTree = "<group>"; };
+		74674C5C2173827000C9E32D /* OpenCVWrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenCVWrapper.mm; sourceTree = "<group>"; };
 		74BF3495216B19D20087F124 /* Pictorial_Time_Machine2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pictorial_Time_Machine2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74BF3498216B19D20087F124 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		74BF349A216B19D20087F124 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -45,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74674C5921737E5000C9E32D /* opencv2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,10 +89,14 @@
 				74BF3498216B19D20087F124 /* AppDelegate.swift */,
 				74BF349A216B19D20087F124 /* ViewController.swift */,
 				74BF349C216B19D20087F124 /* Main.storyboard */,
+				74674C5B2173827000C9E32D /* OpenCVWrapper.h */,
+				74674C5C2173827000C9E32D /* OpenCVWrapper.mm */,
 				74BF34B8216B558C0087F124 /* Saveimage.swift */,
 				74BF349F216B19D40087F124 /* Assets.xcassets */,
 				74BF34A1216B19D40087F124 /* LaunchScreen.storyboard */,
 				74BF34A4216B19D40087F124 /* Info.plist */,
+				74674C5821737E4F00C9E32D /* opencv2.framework */,
+				74674C5A2173827000C9E32D /* Pictorial_Time_Machine2-Bridging-Header.h */,
 			);
 			path = Pictorial_Time_Machine2;
 			sourceTree = "<group>";
@@ -149,6 +160,7 @@
 				TargetAttributes = {
 					74BF3494216B19D20087F124 = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1000;
 					};
 					74BF34A8216B19D40087F124 = {
 						CreatedOnToolsVersion = 10.0;
@@ -202,6 +214,7 @@
 			files = (
 				74BF349B216B19D20087F124 /* ViewController.swift in Sources */,
 				74BF34B9216B558C0087F124 /* Saveimage.swift in Sources */,
+				74674C5D2173827000C9E32D /* OpenCVWrapper.mm in Sources */,
 				74BF3499216B19D20087F124 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -364,8 +377,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6CS57DWUAQ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pictorial_Time_Machine2",
+				);
 				INFOPLIST_FILE = Pictorial_Time_Machine2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -373,6 +391,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.Pictorial-Time-Machine2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Pictorial_Time_Machine2/Pictorial_Time_Machine2-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -382,8 +402,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6CS57DWUAQ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pictorial_Time_Machine2",
+				);
 				INFOPLIST_FILE = Pictorial_Time_Machine2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -391,6 +416,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.Pictorial-Time-Machine2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Pictorial_Time_Machine2/Pictorial_Time_Machine2-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
