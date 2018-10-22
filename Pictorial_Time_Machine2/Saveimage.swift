@@ -19,8 +19,11 @@ var img7 = UIImage(named:"iwamotoyama_ee-1200x880")!
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.backgroundColor = UIColor.cyan
+        
         image1.image = image3
         // Do any additional setup after loading the view.
+        
     }
     
     @IBAction func Saveimg(_ sender: Any) {
@@ -28,12 +31,16 @@ var img7 = UIImage(named:"iwamotoyama_ee-1200x880")!
     }
     
     @IBAction func toGrayScaleButtonTouched(_ sender: Any) {
-        image1.image = OpenCVWrapper.makeGray(from: image1.image!)
-        image3 = OpenCVWrapper.makeGray(from: image1.image!)
+        let TestView = UIView.init(frame: CGRect.init(x: 0, y: 20, width: 400, height: 550))
+        let bgColor = UIColor .black
+        TestView.backgroundColor = bgColor
+        TestView.alpha = 0.7
+        self.view.addSubview(TestView)
         
         
         
     }
+    
     /*
     // MARK: - Navigation
 
