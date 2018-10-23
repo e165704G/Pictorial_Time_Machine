@@ -28,6 +28,8 @@ class ViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.backgroundColor = UIColor.cyan
+        
         //opencvの基礎　バージョンを表示
         openCVversionLabel.text = OpenCVWrapper.openCVVersionString()
         
