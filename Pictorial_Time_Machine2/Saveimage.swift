@@ -12,7 +12,9 @@ import AVFoundation
 class Saveimage: UIViewController {
 var img7 = UIImage(named:"iwamotoyama_ee-1200x880")!
     var image3 = UIImage()
+    
    
+    @IBOutlet weak var gaso: UILabel!
     @IBOutlet weak var image1: UIImageView!
     
     
@@ -28,16 +30,46 @@ var img7 = UIImage(named:"iwamotoyama_ee-1200x880")!
     
     @IBAction func Saveimg(_ sender: Any) {
         UIImageWriteToSavedPhotosAlbum(image3, self, nil, nil)
+        //gaso.text = OpenCVWrapper.openCVGasoString(image3)
     }
     
     @IBAction func toGrayScaleButtonTouched(_ sender: Any) {
-        let TestView = UIView.init(frame: CGRect.init(x: 0, y: 20, width: 400, height: 550))
-        let bgColor = UIColor .black
-        TestView.backgroundColor = bgColor
-        TestView.alpha = 0.7
-        self.view.addSubview(TestView)
         
         
+        UIGraphicsBeginImageContextWithOptions(image1.image!.size, false, 0.0)
+        image1.image!.draw(in:(CGRect(x:0,y:0,width:image1.image!.size.width,height:image1.image!.size.height)))
+        image1.image = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        
+        image1.image = OpenCVWrapper.makeGray(from: image1.image!)
+        image3 = OpenCVWrapper.makeGray(from: image1.image!)
+        
+    }
+    
+    
+    @IBAction func getColor(_ sender: Any) {
+        //画像の向き固定
+        UIGraphicsBeginImageContextWithOptions(image1.image!.size, false, 0.0)
+        image1.image!.draw(in:(CGRect(x:0,y:0,width:image1.image!.size.width,height:image1.image!.size.height)))
+        image1.image = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        
+        
+        image1.image = OpenCVWrapper.whiteGet(from: image1.image!)
+        image3 = OpenCVWrapper.whiteGet(from: image1.image!)
+    }
+    
+    
+    
+    @IBAction func pulusDark(_ sender: Any) {
+        UIGraphicsBeginImageContextWithOptions(image1.image!.size, false, 0.0)
+        image1.image!.draw(in:(CGRect(x:0,y:0,width:image1.image!.size.width,height:image1.image!.size.height)))
+        image1.image = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        
+        
+        image1.image = OpenCVWrapper.inthedark(from: image1.image!)
+        image3 = OpenCVWrapper.inthedark(from: image1.image!)
         
     }
     
