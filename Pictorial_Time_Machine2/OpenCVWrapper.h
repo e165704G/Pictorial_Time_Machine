@@ -17,6 +17,16 @@ NS_ASSUME_NONNULL_BEGIN
 // function to convert image to grayscale
 +(UIImage * ) makeGrayFromImage:(UIImage * ) image;
 
+//画素値習得
++(NSString *) openCVGasoString:image;
+
+
+//色検出
++(UIImage * ) whiteGetFromImage:(UIImage * ) imagew;
+
+//ガンマ補正
++(UIImage * ) inthedarkFromImage:(UIImage *)imageb;
+
 @end
 
 NS_ASSUME_NONNULL_END
