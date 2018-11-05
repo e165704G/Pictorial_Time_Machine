@@ -22,19 +22,10 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OrT-HF-n3C">
-                                <rect key="frame" x="101" y="528" width="164" height="26"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bbg-X2-uns">
                                 <rect key="frame" x="16" y="520" width="53" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="確認"/>
                                 <connections>
-                                    <action selector="saveImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="68g-Vd-qJb"/>
                                     <segue destination="Nhu-6F-V1B" kind="show" identifier="mySegue" id="LXo-Cg-J29"/>
                                 </connections>
                             </button>
@@ -42,9 +33,6 @@
                                 <rect key="frame" x="273" y="526" width="31" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="撮影"/>
-                                <connections>
-                                    <action selector="cameraAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="C8I-4w-NhU"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -52,7 +40,6 @@
                     </view>
                     <connections>
                         <outlet property="cameraView" destination="2Ue-wo-pZS" id="eU0-NX-feb"/>
-                        <outlet property="openCVversionLabel" destination="OrT-HF-n3C" id="6ws-cd-ErL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -71,46 +58,25 @@
                                 <rect key="frame" x="0.0" y="20" width="320" height="486"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wgJ-al-UBp">
-                                <rect key="frame" x="16" y="538" width="77" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="エッジ検出"/>
-                                <connections>
-                                    <action selector="toGrayScaleButtonTouched:" destination="Nhu-6F-V1B" eventType="touchUpInside" id="ZTS-j4-yxe"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zPw-8f-kKu">
-                                <rect key="frame" x="258" y="504" width="46" height="46"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="OK"/>
-                                <connections>
-                                    <action selector="Saveimg:" destination="Nhu-6F-V1B" eventType="touchUpInside" id="0qt-FP-iPo"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k8j-xc-9s0">
-                                <rect key="frame" x="16" y="514" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="色検出"/>
-                                <connections>
-                                    <action selector="getColor:" destination="Nhu-6F-V1B" eventType="touchUpInside" id="1JQ-S9-vEK"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WQX-uA-5fE">
-                                <rect key="frame" x="101" y="523" width="123" height="30"/>
+                                <rect key="frame" x="146" y="520" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="夜にしちゃうぞ☆"/>
                                 <connections>
                                     <action selector="pulusDark:" destination="Nhu-6F-V1B" eventType="touchUpInside" id="vKC-C9-yRx"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9i3-SL-0I9">
-                                <rect key="frame" x="252" y="530" width="59" height="46"/>
+                                <rect key="frame" x="16" y="512" width="59" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="back"/>
-                                <connections>
-                                    <segue destination="xa7-KE-hSq" kind="unwind" unwindAction="backToTopWithSegue:" id="50S-j1-7Dm"/>
-                                </connections>
+                                <color key="tintColor" red="1" green="0.63493866229999996" blue="0.049789499850000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal">
+                                    <color key="titleColor" red="1" green="0.63493866229035367" blue="0.049789499854715258" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zPw-8f-kKu">
+                                <rect key="frame" x="258" y="512" width="46" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -121,7 +87,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mUz-qn-tiP" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="xa7-KE-hSq" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="243.75" y="-73.943661971830991"/>
         </scene>
