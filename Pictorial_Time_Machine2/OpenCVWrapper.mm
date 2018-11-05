@@ -129,7 +129,7 @@
     cv::cvtColor (getMat, grayMat, CV_BGR2GRAY);
     
     
-    float gamma = 0.3;
+    float gamma = 0.1;
     
     uchar lut[256];
     double gm = 1.0 / gamma;
@@ -147,7 +147,14 @@
 
     LUT(getMat, cv::Mat(cv::Size(256, 1), CV_8U, lut), result);
     
-    return MatToUIImage(result);
+    
+    cv::Mat destination;
+    addWeighted(getMat, 0.3, result, 1, 0.0, destination);
+    
+    
+    
+    
+    return MatToUIImage(destination);
 }
 
 
