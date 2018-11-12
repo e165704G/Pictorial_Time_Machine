@@ -27,6 +27,11 @@ NS_ASSUME_NONNULL_BEGIN
 //ガンマ補正
 +(UIImage * ) inthedarkFromImage:(UIImage *)imageb;
 
+
+//watershed？
++(UIImage * ) filterFromImage:(UIImage *)imagef;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

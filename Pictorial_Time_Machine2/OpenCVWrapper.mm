@@ -44,6 +44,120 @@
     return [NSString stringWithFormat: @"openCV Version %s", CV_VERSION];
 }
 
+//領域分割
++(UIImage * ) filterFromImage:(UIImage *)imagef
+{
+    cv::Mat src_img;
+    src_img = cv::imread("S", 1);
+    cv::Mat getimage;
+    cv::Mat img_copy = getimage.clone();
+    
+    UIImageToMat(imagef, getimage);
+    
+    if(getimage.channels() == 1)return imagef;
+    
+    // transform the cv::Mat color image to gray
+    cv::Mat grayMat;
+    
+    cv::cvtColor (getimage, grayMat, CV_BGR2GRAY);
+    //グレースケール化完了
+    //ここから２ち値化
+    
+    cv::threshold(grayMat, grayMat, 0, 255, CV_THRESH_BINARY | CV_THRESH_OTSU);
+    
+    
+    /*ノイズ除去
+    
+    cv::Mat opening;
+    cv::Mat kernel(3, 3, CV_8U, cv::Scalar(1));
+    cv::morphologyEx(grayMat, opening, cv::MORPH_OPEN, kernel, cv::Point(-1,-1), 2);
+    
+    // 背景領域抽出
+    cv::Mat sure_bg;
+    cv::dilate(opening, sure_bg, kernel, cv::Point(-1,-1), 3);
+    
+    
+    //前景領域抽出
+
+    cv::Mat dist_transform;
+    cv::distanceTransform(opening, dist_transform, CV_DIST_L2, 5);
+    
+    cv::Mat sure_fg;
+    double minVal, maxVal;
+    cv::Point minLoc, maxLoc;
+    cv::minMaxLoc(dist_transform, &minVal, &maxVal, &minLoc, &maxLoc);
+    cv::threshold(dist_transform, sure_fg, 0.2*maxVal, 255, 0);
+    
+    dist_transform = dist_transform/maxVal;
+    
+    //不透明領域つ抽出
+    cv::Mat unknown, sure_fg_uc1;
+    sure_fg.convertTo(sure_fg_uc1, CV_8UC1);
+    cv::subtract(sure_bg, sure_fg_uc1, unknown);
+    
+    
+    // 前景ラベリング
+    int compCount = 0;
+    std::vector<std::vector<cv::Point> > contours;
+    std::vector<cv::Vec4i> hierarchy;
+    sure_fg.convertTo(sure_fg, CV_32SC1, 1.0);
+    cv::findContours(sure_fg, contours, hierarchy, cv::RETR_CCOMP, cv::CHAIN_APPROX_SIMPLE);
+    //if( contours.empty() ) return;
+    cv::Mat markers = cv::Mat::zeros(sure_fg.rows, sure_fg.cols, CV_32SC1);
+    int idx = 0;
+    for( ; idx >= 0; idx = hierarchy[idx][0], compCount++ )
+        cv::drawContours(markers, contours, idx, cv::Scalar::all(compCount+1), -1, 8, hierarchy, INT_MAX);
+    markers = markers+1;
+    
+    // 不明領域は今のところゼロ
+    for(int i=0; i<markers.rows; i++){
+        for(int j=0; j<markers.cols; j++){
+            unsigned char &v = unknown.at<unsigned char>(i, j);
+            if(v==255){
+                markers.at<int>(i, j) = 0;
+            }
+        }
+    }
+    
+    cv::Mat wshed(markers.size(), CV_8UC3);
+    std::vector<cv::Vec3b> colorTab;
+    for(int i = 0; i < compCount; i++ )
+    {
+        int b = cv::theRNG().uniform(0, 255);
+        int g = cv::theRNG().uniform(0, 255);
+        int r = cv::theRNG().uniform(0, 255);
+        
+        colorTab.push_back(cv::Vec3b((uchar)b, (uchar)g, (uchar)r));
+    }
+    
+    // paint the watershed image
+    for(int i = 0; i < markers.rows; i++ ){
+        for(int j = 0; j < markers.cols; j++ )
+        {
+            int index = markers.at<int>(i,j);
+            if( index == -1 )
+                wshed.at<cv::Vec3b>(i,j) = cv::Vec3b(255,255,255);
+            else if( index <= 0 || index > compCount )
+                wshed.at<cv::Vec3b>(i,j) = cv::Vec3b(0,0,0);
+            else
+                wshed.at<cv::Vec3b>(i,j) = colorTab[index - 1];
+        }
+    }
+    
+    cv::Mat imgG;
+    cvtColor(grayMat, imgG, cv::COLOR_GRAY2BGR);
+    wshed = wshed*0.5 + imgG*0.5;
+    
+    
+    */
+    
+    return MatToUIImage(grayMat);
+    
+    
+    
+}
+
+
 
 +(UIImage * ) makeGrayFromImage:(UIImage *)image
 {
@@ -119,6 +233,8 @@
 {
     // transform UIImagge to cv::Mat
     cv::Mat getMat;
+    //getMatをコピー
+    cv::Mat img_copy = getMat.clone();
     UIImageToMat(imageb, getMat);
     
     // if the image already grayscale, return it
@@ -128,8 +244,10 @@
     cv::Mat grayMat;
     cv::cvtColor (getMat, grayMat, CV_BGR2GRAY);
     
+    cv::threshold(grayMat, grayMat, 0, 255, CV_THRESH_BINARY | CV_THRESH_OTSU);
     
-    float gamma = 0.1;
+    
+    float gamma = 0.05;
     
     uchar lut[256];
     double gm = 1.0 / gamma;
@@ -149,12 +267,17 @@
     
     
     cv::Mat destination;
-    addWeighted(getMat, 0.3, result, 1, 0.0, destination);
+    cv::Mat destination2;
+    addWeighted(getMat, 0.5, result, 0.5, 0.0, destination);
+    addWeighted(result, 0.5, destination, 0.5, 0.0, destination2);
     
     
     
+    //マスク処理
+    //img_copy.copyTo(destination2,grayMat);
     
-    return MatToUIImage(destination);
+    
+    return MatToUIImage(destination2);
 }
 
 

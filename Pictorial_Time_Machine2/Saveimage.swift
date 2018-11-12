@@ -34,7 +34,7 @@ var img7 = UIImage(named:"iwamotoyama_ee-1200x880")!
         let savebutton = UIButton(type: UIButton.ButtonType.system)
         
         // ボタンを押した時に実行するメソッドを指定
-        graybutton.addTarget(self, action: #selector(pulusDark(_:)), for: UIControl.Event.touchUpInside)
+        graybutton.addTarget(self, action: #selector(inthedark(_:)), for: UIControl.Event.touchUpInside)
         backbutton.addTarget(self, action: #selector(backpage(_:)), for: UIControl.Event.touchUpInside)
         savebutton.addTarget(self, action: #selector(Saveimg(_:)), for: UIControl.Event.touchUpInside)
         
@@ -121,16 +121,23 @@ var img7 = UIImage(named:"iwamotoyama_ee-1200x880")!
     
     
     */
-    @IBAction func pulusDark(_ sender: Any) {
+    @IBAction func inthedark(_ sender: Any) {
         UIGraphicsBeginImageContextWithOptions(image1.image!.size, false, 0.0)
         image1.image!.draw(in:(CGRect(x:0,y:0,width:image1.image!.size.width,height:image1.image!.size.height)))
         image1.image = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         
         
-        image1.image = OpenCVWrapper.inthedark(from: image1.image!)
-        image3 = OpenCVWrapper.inthedark(from: image1.image!)
         
+        UIGraphicsBeginImageContextWithOptions(image3.size, false, 0.0)
+        image3.draw(in:(CGRect(x:0,y:0,width:image3.size.width,height:image3.size.height)))
+        image3 = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        
+        
+        image1.image = OpenCVWrapper.inthedark(from: image1.image!)
+        //image3 = OpenCVWrapper.inthedark(from: image3)
+        image3 = image1.image!
     }
     
     /*
