@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		74674C5D2173827000C9E32D /* OpenCVWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 74674C5C2173827000C9E32D /* OpenCVWrapper.mm */; };
-		746BCA26218B245E00D36EB9 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 746BCA25218B245E00D36EB9 /* opencv2.framework */; };
-		746BCA27218B245E00D36EB9 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 746BCA25218B245E00D36EB9 /* opencv2.framework */; };
 		74BF3499216B19D20087F124 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BF3498216B19D20087F124 /* AppDelegate.swift */; };
 		74BF349B216B19D20087F124 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BF349A216B19D20087F124 /* ViewController.swift */; };
 		74BF349E216B19D20087F124 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74BF349C216B19D20087F124 /* Main.storyboard */; };
@@ -33,7 +31,6 @@
 		74674C5A2173827000C9E32D /* Pictorial_Time_Machine2-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pictorial_Time_Machine2-Bridging-Header.h"; sourceTree = "<group>"; };
 		74674C5B2173827000C9E32D /* OpenCVWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenCVWrapper.h; sourceTree = "<group>"; };
 		74674C5C2173827000C9E32D /* OpenCVWrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenCVWrapper.mm; sourceTree = "<group>"; };
-		746BCA25218B245E00D36EB9 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 		74BF3495216B19D20087F124 /* Pictorial_Time_Machine2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pictorial_Time_Machine2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74BF3498216B19D20087F124 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		74BF349A216B19D20087F124 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -52,7 +49,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				746BCA26218B245E00D36EB9 /* opencv2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,7 +56,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				746BCA27218B245E00D36EB9 /* opencv2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,7 +90,6 @@
 				74674C5C2173827000C9E32D /* OpenCVWrapper.mm */,
 				74BF34B8216B558C0087F124 /* Saveimage.swift */,
 				74BF349F216B19D40087F124 /* Assets.xcassets */,
-				746BCA25218B245E00D36EB9 /* opencv2.framework */,
 				74BF34A1216B19D40087F124 /* LaunchScreen.storyboard */,
 				74BF34A4216B19D40087F124 /* Info.plist */,
 				74674C5A2173827000C9E32D /* Pictorial_Time_Machine2-Bridging-Header.h */,
