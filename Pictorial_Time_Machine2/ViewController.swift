@@ -13,8 +13,7 @@ import AVFoundation
 class ViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     var img7 = UIImage(named:"iwamotoyama_ee-1200x880")!
     var image2 = UIImage()
-    
-    @IBOutlet weak var openCVversionLabel: UILabel!
+    let shutter_image:UIImage = UIImage(named: "shutter.png")!
     
 
     @IBOutlet weak var cameraView: UIView!
@@ -29,35 +28,38 @@ class ViewController: UIViewController, AVCapturePhotoCaptureDelegate {
         super.viewDidLoad()
         
         let button1 = UIButton(type: UIButton.ButtonType.system)
-        let button2 = UIButton(type: UIButton.ButtonType.system)
+        let shutter_button = UIButton()
+      
+        //シャッターボタンのimageを設定
+        shutter_button.setImage(shutter_image, for: .normal)
         
         // ボタンを押した時に実行するメソッドを指定
         button1.addTarget(self, action: #selector(saveImage(_:)), for: UIControl.Event.touchUpInside)
-        button2.addTarget(self, action: #selector(cameraAction(_:)), for: UIControl.Event.touchUpInside)
+        shutter_button.addTarget(self, action: #selector(cameraAction(_:)), for: UIControl.Event.touchUpInside)
         // ラベルを設定する
         button1.setTitle("確認", for: UIControl.State.normal)
-        button2.setTitle("撮影", for: UIControl.State.normal)
+      
         // サイズ
         button1.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
-        button2.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
+        shutter_button.frame = CGRect(x: 0, y: 0, width: 70, height: 70)
         // 位置
         button1.layer.position = CGPoint(x: 45, y:self.view.frame.height - 45)
-        button2.layer.position = CGPoint(x: self.view.frame.width - 45, y:self.view.frame.height - 45)
+        shutter_button.layer.position = CGPoint(x: self.view.frame.width/2, y:self.view.frame.height - 45)
         // 背景色
         button1.backgroundColor = UIColor(red: 0.3, green: 0.7, blue: 0.6, alpha: 1)
-        button2.backgroundColor = UIColor(red: 0.3, green: 0.7, blue: 0.6, alpha: 1)
+      
         // 枠の太さ
         button1.layer.borderWidth = 0.5
-        button2.layer.borderWidth = 0.5
+      
         // 枠の色
         button1.layer.borderColor = UIColor(red: 0.3, green: 0.6, blue: 0.5, alpha: 1).cgColor
-        button2.layer.borderColor = UIColor(red: 0.3, green: 0.6, blue: 0.5, alpha: 1).cgColor
+      
         // 枠に丸み
         button1.layer.cornerRadius = 25
-        button2.layer.cornerRadius = 25
+      
         // viewに追加する
         self.view.addSubview(button1)
-        self.view.addSubview(button2)
+        self.view.addSubview(shutter_button)
         
         self.view.backgroundColor = UIColor.cyan
         
@@ -108,7 +110,7 @@ class ViewController: UIViewController, AVCapturePhotoCaptureDelegate {
         // Do any additional setup after loading the view, typically from a nib.
     }
        
-    @IBAction func cameraAction(_ sender: AnyObject) {
+    @objc func cameraAction(_ sender: AnyObject) {
         // カメラの設定
         // カメラの設定
         let settingsForMonitoring = AVCapturePhotoSettings()
@@ -135,7 +137,7 @@ class ViewController: UIViewController, AVCapturePhotoCaptureDelegate {
             
             // フォトライブラリに保存
     }
-    @IBAction func saveImage(_ sender: AnyObject ) {
+    @objc func saveImage(_ sender: AnyObject ) {
         goToNextPage()
     }
     func goToNextPage(){
