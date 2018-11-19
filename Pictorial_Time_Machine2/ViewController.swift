@@ -15,6 +15,7 @@ class ViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     var image2 = UIImage()
     let shutter_image:UIImage = UIImage(named: "shutter.png")!
     
+    
 
     @IBOutlet weak var cameraView: UIView!
     

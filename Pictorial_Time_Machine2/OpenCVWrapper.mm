@@ -9,6 +9,7 @@
 #import "opencv2/opencv.hpp"
 #import "opencv2/imgcodecs/ios.h"
 #import "opencv2/imgproc/imgproc.hpp"
+#include <vector>
 #import "OpenCVWrapper.h"
 
 //BGRで
@@ -45,32 +46,46 @@
 }
 
 //領域分割
-+(UIImage * ) filterFromImage:(UIImage *)imagef
++(UIImage * )filter :(UIImage *)imagef nightImage2:(UIImage * )nightImage2
 {
     cv::Mat src_img;
-    src_img = cv::imread("S", 1);
     cv::Mat getimage;
     cv::Mat img_copy = getimage.clone();
     
     UIImageToMat(imagef, getimage);
+    UIImageToMat(nightImage2, src_img);
     
-    if(getimage.channels() == 1)return imagef;
+    //if(getimage.channels() == 1)return imagef;
+    
+    
+    
+    
     
     // transform the cv::Mat color image to gray
     cv::Mat grayMat;
     
     cv::cvtColor (getimage, grayMat, CV_BGR2GRAY);
+    
+
+    
     //グレースケール化完了
+    
+    cv::Mat mask;
+    cv::Mat im_mask;
     //ここから２ち値化
+    //cv::threshold(grayMat,mask,200,255,cv::THRESH_BINARY);
+    cv::threshold(grayMat, im_mask, 0, 255, CV_THRESH_BINARY | CV_THRESH_OTSU);
     
-    cv::threshold(grayMat, grayMat, 0, 255, CV_THRESH_BINARY | CV_THRESH_OTSU);
     
     
-    /*ノイズ除去
+    
+    //cv::cvtColor (getmask, finish_image, CV_GRAY2BGR );
+
+    //ノイズ除去
     
     cv::Mat opening;
     cv::Mat kernel(3, 3, CV_8U, cv::Scalar(1));
-    cv::morphologyEx(grayMat, opening, cv::MORPH_OPEN, kernel, cv::Point(-1,-1), 2);
+    cv::morphologyEx(im_mask, opening, cv::MORPH_OPEN, kernel, cv::Point(-1,-1), 2);
     
     // 背景領域抽出
     cv::Mat sure_bg;
@@ -83,19 +98,34 @@
     cv::distanceTransform(opening, dist_transform, CV_DIST_L2, 5);
     
     cv::Mat sure_fg;
-    double minVal, maxVal;
-    cv::Point minLoc, maxLoc;
-    cv::minMaxLoc(dist_transform, &minVal, &maxVal, &minLoc, &maxLoc);
-    cv::threshold(dist_transform, sure_fg, 0.2*maxVal, 255, 0);
+    //double maxVal ;
+    //cv::threshold(dist_transform, sure_fg, 0.5*maxVal, 255, CV_THRESH_BINARY);
     
-    dist_transform = dist_transform/maxVal;
+    double mindist, maxdist;
+    cv::Point minLocon, maxLocon;
+    cv::minMaxLoc(dist_transform, &mindist, &maxdist, &minLocon, &maxLocon);
+    dist_transform = dist_transform/maxdist;
+
+    cv::threshold(dist_transform, sure_fg, 0.2*maxdist, 255, CV_THRESH_BINARY);
+    
+   
+    
+    
     
     //不透明領域つ抽出
     cv::Mat unknown, sure_fg_uc1;
     sure_fg.convertTo(sure_fg_uc1, CV_8UC1);
     cv::subtract(sure_bg, sure_fg_uc1, unknown);
     
+    cv::Mat markers;
+    //int cv::connectedComponents(sure_fg, markers, <#int connectivity#>, <#int ltype#>, <#int ccltype#>);
     
+    
+    
+  
+    /*
+    
+     
     // 前景ラベリング
     int compCount = 0;
     std::vector<std::vector<cv::Point> > contours;
@@ -151,7 +181,7 @@
     
     */
     
-    return MatToUIImage(grayMat);
+    return MatToUIImage(sure_fg);
     
     
     
@@ -159,95 +189,28 @@
 
 
 
-+(UIImage * ) makeGrayFromImage:(UIImage *)image
-{
-    // transform UIImagge to cv::Mat
-    cv::Mat imageMat;
-    UIImageToMat(image, imageMat);
-    
-    // if the image already grayscale, return it
-    if(imageMat.channels() == 1)return image;
-    
-    // transform the cv::Mat color image to gray
-    cv::Mat grayMat;
-    cv::cvtColor (imageMat, grayMat, CV_BGR2GRAY);
-    
-    
-    //１次微分画像？
-    cv::Mat tmp_img;
-    cv::Mat sobel_img;
-    Sobel(grayMat, tmp_img,CV_32F ,1, 1);
-    convertScaleAbs(tmp_img, sobel_img, 1, 0);
-    
-    //2次微分？
-    cv::Mat laplacian_img;
-    Laplacian(grayMat, tmp_img, CV_32F, 3);
-    convertScaleAbs(tmp_img, laplacian_img, 1, 0);
-    
-    
-    //エッジ検出？
-    cv::Mat canny_img;
-    Canny(grayMat, canny_img, 50, 200);
-    
-    return MatToUIImage(canny_img);
-    
-    
-   
-}
 
-//色検出
-+(UIImage * ) whiteGetFromImage:(UIImage *)imagew
-{
-    
-    
-    cv::Mat getimageMat;
-    
-    
-    UIImageToMat(imagew, getimageMat);
-    if(getimageMat.channels() == 1)return imagew;
-    //色
-    cv::Mat mask_image, output_image_rgb, hsv_image,colorimage;
-   
-    // BGRからHSVへ変換
-    cv::cvtColor(getimageMat, hsv_image, CV_BGR2HSV, 3);
-    cv::cvtColor(getimageMat, colorimage, CV_LOAD_IMAGE_COLOR);
-    
-    //HSV検出
-    /*
-    cv::Scalar s_min = cvScalar(H_MIN, S_MIN, V_MIN);
-    cv::Scalar s_max = cvScalar(H_MAX, S_MAX, V_MAX);
-    inRange(hsv_image, s_min, s_max, mask_image);
-    */
-    
-    //色で検出
-    cv::Scalar s_min = cvScalar(R_MIN, G_MIN, B_MIN);
-    cv::Scalar s_max = cvScalar(R_MAX, G_MAX, B_MAX);
-    inRange(colorimage, s_min, s_max, mask_image);
-    
-    return MatToUIImage(mask_image);
-}
-
-
-//ガンマ補正
-+(UIImage * ) inthedarkFromImage:(UIImage *)imageb
+//星空出すやつ
++(UIImage * ) inthedarkFromImage:(UIImage *)imageb nightImage:(UIImage * )nightImage
 {
     // transform UIImagge to cv::Mat
     cv::Mat getMat;
+    cv::Mat getnightImage;
     //getMatをコピー
     cv::Mat img_copy = getMat.clone();
     UIImageToMat(imageb, getMat);
-    
+    UIImageToMat(nightImage, getnightImage);
     // if the image already grayscale, return it
-    if(getMat.channels() == 1)return imageb;
+    //if(getMat.channels() == 1)return imageb;
     
     // transform the cv::Mat color image to gray
     cv::Mat grayMat;
     cv::cvtColor (getMat, grayMat, CV_BGR2GRAY);
     
-    cv::threshold(grayMat, grayMat, 0, 255, CV_THRESH_BINARY | CV_THRESH_OTSU);
     
     
-    float gamma = 0.05;
+    //ガンマ補正で暗くする
+    float gamma = 0.08;
     
     uchar lut[256];
     double gm = 1.0 / gamma;
@@ -258,11 +221,11 @@
     // Matを1行として扱う（高速化のため）
     cv::Mat p = getMat.reshape(0, 1).clone();
     for (int i = 0; i < p.cols; i++) {
-       p.at<uchar>(0, i) = lut[p.at<uchar>(0, i)];
+        p.at<uchar>(0, i) = lut[p.at<uchar>(0, i)];
     }
     // 元の形にもどす
     cv::Mat result = p.reshape(0, getMat.rows);
-
+    
     LUT(getMat, cv::Mat(cv::Size(256, 1), CV_8U, lut), result);
     
     
@@ -270,14 +233,72 @@
     cv::Mat destination2;
     addWeighted(getMat, 0.5, result, 0.5, 0.0, destination);
     addWeighted(result, 0.5, destination, 0.5, 0.0, destination2);
+
     
     
     
-    //マスク処理
-    //img_copy.copyTo(destination2,grayMat);
     
     
-    return MatToUIImage(destination2);
+    //2値化(マスク画像１)
+    cv::threshold(grayMat, grayMat, 0, 255, CV_THRESH_BINARY | CV_THRESH_OTSU);
+    
+    
+    
+    //ノイズ除去
+    
+    cv::Mat opening;
+    cv::Mat kernel(3, 3, CV_8U, cv::Scalar(1));
+    cv::morphologyEx(grayMat, opening, cv::MORPH_OPEN, kernel, cv::Point(-1,-1), 2);
+
+    
+    // 背景領域抽出
+    cv::Mat sure_bg;
+    cv::dilate(opening, sure_bg, kernel, cv::Point(-1,-1), 3);
+    
+    
+    //星空の画像をマスク処理
+    cv::Mat getmask_star;
+    cv::Mat gray_night;
+    cv::Mat color_mask_star;
+    cv::Mat resize_star;
+    
+    cv::cvtColor(sure_bg, color_mask_star, CV_GRAY2RGBA);
+    cv::resize(getnightImage, resize_star, color_mask_star.size(), 0, 0, cv::INTER_LINEAR);
+    //ビットアンドによるマスク処理
+    cv::bitwise_and(resize_star, color_mask_star, getmask_star);
+    //星空のマスク画像完成
+    
+    
+    
+    
+    
+    //ここから暗くした町の画像をマスク処理
+    //マスク画像2作成
+    cv::Mat rivers_mask;
+    cv::bitwise_not(grayMat, rivers_mask);
+    
+    //町マスク処理
+    cv::Mat getmask_house;
+    cv::Mat gray_night_house;
+    cv::Mat color_mask_house;
+    cv::Mat resize_night_house;
+    
+    
+    cv::cvtColor(rivers_mask, color_mask_house, CV_GRAY2RGBA);
+    cv::resize(destination2, resize_night_house, color_mask_house.size(), 0, 0, cv::INTER_LINEAR);
+    
+    cv::bitwise_and(resize_night_house, color_mask_house, getmask_house);
+    
+    
+    
+    //マスク画像1,2を合体
+    cv::Mat perfect_get;
+    cv::Mat resize_gethouse;
+    cv::resize(getmask_house, resize_gethouse, getmask_star.size(), 0, 0, cv::INTER_LINEAR);
+    //addWeighted(resize_gethouse, 0.5, getmask_star, 0.5, 0.0, perfect_get);
+    cv::add(resize_gethouse, getmask_star, perfect_get);
+    
+    return MatToUIImage(perfect_get);
 }
 
 

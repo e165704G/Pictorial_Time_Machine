@@ -13,7 +13,7 @@ class Saveimage: UIViewController {
 var img7 = UIImage(named:"iwamotoyama_ee-1200x880")!
     var image3 = UIImage()
   let Back_image:UIImage = UIImage(named: "Back.png")!
-    
+    let night_image:UIImage = UIImage(named: "star3.jpg")!
    
     //@IBOutlet weak var gaso: UILabel!
     @IBOutlet weak var image1: UIImageView!
@@ -154,9 +154,9 @@ var img7 = UIImage(named:"iwamotoyama_ee-1200x880")!
       UIGraphicsEndImageContext()
       
       
-      image1.image = OpenCVWrapper.inthedark(from: image1.image!)
+        image3 = OpenCVWrapper.inthedark(from: image3, nightImage: night_image)
       //image3 = OpenCVWrapper.inthedark(from: image3)
-      image3 = image1.image!
+      image1.image! = image3
         
     }
     
