@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		74674C5D2173827000C9E32D /* OpenCVWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 74674C5C2173827000C9E32D /* OpenCVWrapper.mm */; };
+		74A0B43821A184A900458EC2 /* star3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 74A0B43721A184A800458EC2 /* star3.jpg */; };
+		74A0B43A21A184B300458EC2 /* star1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 74A0B43921A184B300458EC2 /* star1.jpg */; };
+		74A0B43C21A184BC00458EC2 /* star2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 74A0B43B21A184BC00458EC2 /* star2.jpg */; };
+		74A92FED219971CC00AC0968 /* shutter.png in Resources */ = {isa = PBXBuildFile; fileRef = 74A92FEB219971CC00AC0968 /* shutter.png */; };
+		74A92FEE219971CC00AC0968 /* Back.png in Resources */ = {isa = PBXBuildFile; fileRef = 74A92FEC219971CC00AC0968 /* Back.png */; };
+		74A92FF0219AA33900AC0968 /* S.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 74A92FEF219AA33900AC0968 /* S.jpg */; };
 		74BF3499216B19D20087F124 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BF3498216B19D20087F124 /* AppDelegate.swift */; };
 		74BF349B216B19D20087F124 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BF349A216B19D20087F124 /* ViewController.swift */; };
 		74BF349E216B19D20087F124 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74BF349C216B19D20087F124 /* Main.storyboard */; };
@@ -31,6 +37,12 @@
 		74674C5A2173827000C9E32D /* Pictorial_Time_Machine2-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pictorial_Time_Machine2-Bridging-Header.h"; sourceTree = "<group>"; };
 		74674C5B2173827000C9E32D /* OpenCVWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenCVWrapper.h; sourceTree = "<group>"; };
 		74674C5C2173827000C9E32D /* OpenCVWrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenCVWrapper.mm; sourceTree = "<group>"; };
+		74A0B43721A184A800458EC2 /* star3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = star3.jpg; sourceTree = "<group>"; };
+		74A0B43921A184B300458EC2 /* star1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = star1.jpg; sourceTree = "<group>"; };
+		74A0B43B21A184BC00458EC2 /* star2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = star2.jpg; sourceTree = "<group>"; };
+		74A92FEB219971CC00AC0968 /* shutter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shutter.png; sourceTree = "<group>"; };
+		74A92FEC219971CC00AC0968 /* Back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Back.png; sourceTree = "<group>"; };
+		74A92FEF219AA33900AC0968 /* S.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = S.jpg; sourceTree = "<group>"; };
 		74BF3495216B19D20087F124 /* Pictorial_Time_Machine2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pictorial_Time_Machine2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74BF3498216B19D20087F124 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		74BF349A216B19D20087F124 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -62,6 +74,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		74A92FEA219971CC00AC0968 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				74A0B43921A184B300458EC2 /* star1.jpg */,
+				74A0B43B21A184BC00458EC2 /* star2.jpg */,
+				74A0B43721A184A800458EC2 /* star3.jpg */,
+				74A92FEF219AA33900AC0968 /* S.jpg */,
+				74A92FEB219971CC00AC0968 /* shutter.png */,
+				74A92FEC219971CC00AC0968 /* Back.png */,
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
 		74BF348C216B19D20087F124 = {
 			isa = PBXGroup;
 			children = (
@@ -90,6 +115,7 @@
 				74674C5C2173827000C9E32D /* OpenCVWrapper.mm */,
 				74BF34B8216B558C0087F124 /* Saveimage.swift */,
 				74BF349F216B19D40087F124 /* Assets.xcassets */,
+				74A92FEA219971CC00AC0968 /* Image */,
 				74BF34A1216B19D40087F124 /* LaunchScreen.storyboard */,
 				74BF34A4216B19D40087F124 /* Info.plist */,
 				74674C5A2173827000C9E32D /* Pictorial_Time_Machine2-Bridging-Header.h */,
@@ -189,7 +215,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				74BF34A3216B19D40087F124 /* LaunchScreen.storyboard in Resources */,
+				74A0B43C21A184BC00458EC2 /* star2.jpg in Resources */,
+				74A0B43821A184A900458EC2 /* star3.jpg in Resources */,
+				74A92FED219971CC00AC0968 /* shutter.png in Resources */,
+				74A92FEE219971CC00AC0968 /* Back.png in Resources */,
+				74A92FF0219AA33900AC0968 /* S.jpg in Resources */,
 				74BF34A0216B19D40087F124 /* Assets.xcassets in Resources */,
+				74A0B43A21A184B300458EC2 /* star1.jpg in Resources */,
 				74BF349E216B19D20087F124 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -389,7 +421,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Pictorial-Time-Machine2";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.i.Pictorial-Time-Machine2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Pictorial_Time_Machine2/Pictorial_Time_Machine2-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -416,7 +448,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Pictorial-Time-Machine2";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.i.Pictorial-Time-Machine2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Pictorial_Time_Machine2/Pictorial_Time_Machine2-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
