@@ -13,22 +13,28 @@ class Saveimage: UIViewController {
   
   var img7 = UIImage(named:"iwamotoyama_ee-1200x880")!
   var image3 = UIImage()
+  var image4 = UIImage()
+  var flg: Bool = true
   let Back_image:UIImage = UIImage(named: "Back.png")!
   let night_image:UIImage = UIImage(named: "star3.jpg")!
   
   //@IBOutlet weak var gaso: UILabel!
   @IBOutlet weak var image1: UIImageView!
   
+    let darkbutton = UIButton(type: UIButton.ButtonType.system)
+    let returnbutton = UIButton(type: UIButton.ButtonType.system)
+    
   override func viewDidLoad() {
     super.viewDidLoad()
     self.view.backgroundColor = UIColor.cyan
     
     //画像サイズ
     image1.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
+    image4 = image3
     image1.image = image3
     
     // Do any additional setup after loading the view.
-    let darkbutton = UIButton(type: UIButton.ButtonType.system)
+    //let darkbutton = UIButton(type: UIButton.ButtonType.system)
     let backbutton = UIButton()
     let savebutton = UIButton(type: UIButton.ButtonType.system)
         
@@ -36,7 +42,7 @@ class Saveimage: UIViewController {
     darkbutton.addTarget(self, action: #selector(intheDark(_:)), for: UIControl.Event.touchUpInside)
     backbutton.addTarget(self, action: #selector(backpage(_:)), for: UIControl.Event.touchUpInside)
     savebutton.addTarget(self, action: #selector(Saveimg(_:)), for: UIControl.Event.touchUpInside)
-        
+    returnbutton.addTarget(self, action: #selector(returntheDark(_:)), for: UIControl.Event.touchUpInside)
     // ラベルを設定する
     darkbutton.setTitle("Night🌙", for: UIControl.State.normal)
     darkbutton.setTitleColor(UIColor.white, for: UIControl.State.normal)
@@ -44,41 +50,48 @@ class Saveimage: UIViewController {
       
     backbutton.setImage(Back_image, for: .normal)
     savebutton.setTitle("保存", for: UIControl.State.normal)
-        
+    
+    returnbutton.setTitle("Return☀️", for: UIControl.State.normal)
+    returnbutton.setTitleColor(UIColor.white, for: UIControl.State.normal)
+    returnbutton.titleLabel!.font = UIFont.systemFont(ofSize: 25)
     // サイズ
     darkbutton.frame = CGRect(x: 0, y: 0, width: 130, height: 80)
     backbutton.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
     savebutton.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
-        
+    returnbutton.frame = CGRect(x: 0, y: 0, width: 130, height: 80)
     // 位置
     darkbutton.layer.position = CGPoint(x: self.view.frame.width/2, y:self.view.frame.height - 45)
     backbutton.layer.position = CGPoint(x: self.view.frame.width - 30 , y: 45)
     savebutton.layer.position = CGPoint(x: self.view.frame.width - 45, y:self.view.frame.height - 45)
-        
+    returnbutton.layer.position = CGPoint(x: self.view.frame.width/2, y:self.view.frame.height - 45)
     // 背景色
-    darkbutton.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+    darkbutton.backgroundColor = UIColor.black.withAlphaComponent(1)
     backbutton.backgroundColor = UIColor.white
     savebutton.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
-        
+    returnbutton.backgroundColor = UIColor.black.withAlphaComponent(1)
     // 枠の太さ
     darkbutton.layer.borderWidth = 2
     //backbutton.layer.borderWidth = 0.5
     //savebutton.layer.borderWidth = 0.5
-        
+    returnbutton.layer.borderWidth = 2
     // 枠の色
     darkbutton.layer.borderColor = UIColor.white.cgColor
     //backbutton.layer.borderColor = UIColor.white.cgColor
     savebutton.layer.borderColor = UIColor.white.cgColor
-    
+    returnbutton.layer.borderColor = UIColor.white.cgColor
     // 枠に丸み
     darkbutton.layer.cornerRadius = 25
     backbutton.layer.cornerRadius = 25
     savebutton.layer.cornerRadius = 25
-        
+    returnbutton.layer.cornerRadius = 25
     // viewに追加する
-    self.view.addSubview(darkbutton)
+    
     self.view.addSubview(backbutton)
     self.view.addSubview(savebutton)
+    
+    if (flg == true){
+        self.view.addSubview(darkbutton)
+    }
     
   }
   
@@ -159,6 +172,23 @@ class Saveimage: UIViewController {
     //image3 = OpenCVWrapper.inthedark(from: image3)
     image1.image! = image3
     
+    flg.toggle()
+    if (flg == false){
+        self.view.addSubview(returnbutton)
+        }
+    }
+    
+    @objc func returntheDark(_ sender: Any) {
+        image3 = image4
+        image1.image = image4
+        
+        
+        flg.toggle()
+        if (flg == true){
+            self.view.addSubview(darkbutton)
+    }
+    }
+    
   }
     
     /*
@@ -170,5 +200,3 @@ class Saveimage: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
-}
