@@ -149,6 +149,12 @@ class ViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     }
   }
   @IBAction func backToTop(segue: UIStoryboardSegue) {}
+    
+    override var shouldAutorotate: Bool {
+        get {
+            return false
+        }
+    }
   
 }
 
