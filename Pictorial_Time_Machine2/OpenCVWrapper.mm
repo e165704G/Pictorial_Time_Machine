@@ -210,7 +210,10 @@
     
     
     //ガンマ補正で暗くする
-    float gamma = 0.08;
+    float gamma ;
+    
+    gamma = (rand()%51);
+    gamma = gamma/100;
     
     uchar lut[256];
     double gm = 1.0 / gamma;

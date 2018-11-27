@@ -16,7 +16,13 @@ class Saveimage: UIViewController {
   var img_return = UIImage()
   var flg: Bool = true
   let Back_image:UIImage = UIImage(named: "Back.png")!
-  let night_image:UIImage = UIImage(named: "star3.jpg")!
+    let night_imageS:UIImage = UIImage(named: "S.jpg")!
+    let night_image6:UIImage = UIImage(named: "star6.jpg")!
+    let night_image5:UIImage = UIImage(named: "star5.jpg")!
+    let night_image4:UIImage = UIImage(named: "star4.jpg")!
+    let night_image3:UIImage = UIImage(named: "star3.jpg")!
+    let night_image2:UIImage = UIImage(named: "star2.jpg")!
+    let night_image1:UIImage = UIImage(named: "star1.jpg")!
   
   let indicator = UIActivityIndicatorView()
   
@@ -192,7 +198,38 @@ class Saveimage: UIViewController {
           self.img_save = UIGraphicsGetImageFromCurrentImageContext()!
           UIGraphicsEndImageContext()
     
-          self.img_save = OpenCVWrapper.inthedark(from: self.img_save, nightImage: self.night_image)
+            
+            //ランダムで画像お入れる
+            let random = arc4random() % 6
+             
+             if ( random == 0 ) {
+                self.img_save = OpenCVWrapper.inthedark(from: self.img_save, nightImage: self.night_imageS)
+             self.img_show.image! = self.img_save
+             
+             }else if( random == 1 ) {
+                self.img_save = OpenCVWrapper.inthedark(from: self.img_save, nightImage: self.night_image1)
+             self.img_show.image! = self.img_save
+             }else if( random == 2 ) {
+                self.img_save = OpenCVWrapper.inthedark(from: self.img_save, nightImage: self.night_image2)
+             self.img_show.image! = self.img_save
+             }else if( random == 3 ) {
+                self.img_save = OpenCVWrapper.inthedark(from: self.img_save, nightImage: self.night_image3)
+             self.img_show.image! = self.img_save
+             }else if( random == 4 ) {
+                self.img_save = OpenCVWrapper.inthedark(from: self.img_save, nightImage: self.night_image4)
+             self.img_show.image! = self.img_save
+             }else if( random == 5 ) {
+                self.img_save = OpenCVWrapper.inthedark(from: self.img_save, nightImage: self.night_image5)
+             self.img_show.image! = self.img_save
+             }else if( random == 6 ) {
+                self.img_save = OpenCVWrapper.inthedark(from: self.img_save, nightImage: self.night_image6)
+             self.img_show.image! = self.img_save
+             }else {
+                self.img_save = OpenCVWrapper.inthedark(from: self.img_save, nightImage: self.night_image3)
+             self.img_show.image! = self.img_save
+             }
+            
+          //self.img_save = OpenCVWrapper.inthedark(from: self.img_save, nightImage: self.night_image)
           //image3 = OpenCVWrapper.inthedark(from: image3)
           self.img_show.image! = self.img_save
           self.indicator.stopAnimating()
