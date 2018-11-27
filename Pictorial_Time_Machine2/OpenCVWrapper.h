@@ -27,6 +27,9 @@ NS_ASSUME_NONNULL_BEGIN
 //watershed？
 +(UIImage * ) filter :(UIImage *)imagef nightImage2:(UIImage * )nightImage2;
 
+//夕方風？
++(UIImage * ) intheEveningFromImage:(UIImage *)imageb nightImage:(UIImage * )nightImage;
+
 
 @end
 

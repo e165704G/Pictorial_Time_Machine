@@ -304,6 +304,52 @@
     return MatToUIImage(perfect_get);
 }
 
+//夕方風？
++(UIImage * ) intheEveningFromImage:(UIImage *)imageb nightImage:(UIImage * )nightImage
+{
+    // transform UIImagge to cv::Mat
+    cv::Mat getMat;
+    cv::Mat getnightImage;
+    //getMatをコピー
+    cv::Mat img_copy = getMat.clone();
+    UIImageToMat(imageb, getMat);
+    UIImageToMat(nightImage, getnightImage);
+    // if the image already grayscale, return it
+    //if(getMat.channels() == 1)return imageb;
+    
+    // transform the cv::Mat color image to gray
+    cv::Mat grayMat;
+    cv::cvtColor (getMat, grayMat, CV_BGR2GRAY);
+    
+    
+    
+    //ガンマ補正で暗くする
+    float gamma = 0.08;
+    
+    uchar lut[256];
+    double gm = 1.0 / gamma;
+    for (int i = 0; i < 256; i++)
+        lut[i] = pow(1.0*i/255, gm) * 255;
+    
+    // 輝度値の置き換え処理
+    // Matを1行として扱う（高速化のため）
+    cv::Mat p = getMat.reshape(0, 1).clone();
+    for (int i = 0; i < p.cols; i++) {
+        p.at<uchar>(0, i) = lut[p.at<uchar>(0, i)];
+    }
+    // 元の形にもどす
+    cv::Mat result = p.reshape(0, getMat.rows);
+    
+    LUT(getMat, cv::Mat(cv::Size(256, 1), CV_8U, lut), result);
+    
+    
+    cv::Mat destination;
+    cv::Mat destination2;
+    addWeighted(getMat, 0.5, result, 0.5, 0.0, destination);
+    addWeighted(result, 0.5, destination, 0.5, 0.0, destination2);
+    
+    return MatToUIImage(destination2);
+}
 
 
 +(NSString *) openCVGasoString:image
