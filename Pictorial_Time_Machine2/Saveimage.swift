@@ -18,6 +18,8 @@ class Saveimage: UIViewController {
   let Back_image:UIImage = UIImage(named: "Back.png")!
   let night_image:UIImage = UIImage(named: "star3.jpg")!
   
+  let indicator = UIActivityIndicatorView()
+  
   //@IBOutlet weak var gaso: UILabel!
   @IBOutlet weak var img_show: UIImageView!
   
@@ -72,6 +74,20 @@ class Saveimage: UIViewController {
     
     //NightボタンとReturnボタンを切り替える
     change_buttom()
+    
+    //indicatorの設定
+    // UIActivityIndicatorView のスタイルをテンプレートから選択
+    indicator.style = .whiteLarge
+    // 表示位置
+    indicator.center = self.view.center
+    // 色の設定
+    indicator.color = UIColor.black
+    // アニメーション停止と同時に隠す設定
+    indicator.hidesWhenStopped = true
+    // 画面に追加
+    self.view.addSubview(indicator)
+    // 最前面に移動
+    self.view.bringSubviewToFront(indicator)
   }
   
   func change_buttom(){
@@ -161,25 +177,34 @@ class Saveimage: UIViewController {
   
   @objc func dark_or_return(_ sender: Any) {
     if flg == true{
-      UIGraphicsBeginImageContextWithOptions(img_show.image!.size, false, 0.0)
-      img_show.image!.draw(in:(CGRect(x:0,y:0,width:img_show.image!.size.width,height:img_show.image!.size.height)))
-      img_show.image = UIGraphicsGetImageFromCurrentImageContext()!
-      UIGraphicsEndImageContext()
+      DispatchQueue.main.async(execute: {
+        self.indicator.startAnimating()
+      })
+      DispatchQueue.main.asyncAfter(deadline: .now() + 3
+        , execute: {
+          UIGraphicsBeginImageContextWithOptions(self.img_show.image!.size, false, 0.0)
+          self.img_show.image!.draw(in:(CGRect(x:0,y:0,width:self.img_show.image!.size.width,height:self.img_show.image!.size.height)))
+          self.img_show.image = UIGraphicsGetImageFromCurrentImageContext()!
+          UIGraphicsEndImageContext()
     
-      UIGraphicsBeginImageContextWithOptions(img_save.size, false, 0.0)
-      img_save.draw(in:(CGRect(x:0,y:0,width:img_save.size.width,height:img_save.size.height)))
-      img_save = UIGraphicsGetImageFromCurrentImageContext()!
-      UIGraphicsEndImageContext()
+          UIGraphicsBeginImageContextWithOptions(self.img_save.size, false, 0.0)
+          self.img_save.draw(in:(CGRect(x:0,y:0,width:self.img_save.size.width,height:self.img_save.size.height)))
+          self.img_save = UIGraphicsGetImageFromCurrentImageContext()!
+          UIGraphicsEndImageContext()
     
-      img_save = OpenCVWrapper.inthedark(from: img_save, nightImage: night_image)
-      //image3 = OpenCVWrapper.inthedark(from: image3)
-      img_show.image! = img_save
+          self.img_save = OpenCVWrapper.inthedark(from: self.img_save, nightImage: self.night_image)
+          //image3 = OpenCVWrapper.inthedark(from: image3)
+          self.img_show.image! = self.img_save
+          self.indicator.stopAnimating()
+          self.flg.toggle()
+          self.change_buttom()
+      })
     }else{
       img_save = img_return
       img_show.image = img_return
+      flg.toggle()
+      change_buttom()
     }
-    flg.toggle()
-    change_buttom()
   }
   
 }
