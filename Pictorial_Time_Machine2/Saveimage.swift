@@ -12,14 +12,14 @@ import AVFoundation
 class Saveimage: UIViewController {
   
   var img7 = UIImage(named:"iwamotoyama_ee-1200x880")!
-  var image3 = UIImage()
-  var image4 = UIImage()
+  var img_save = UIImage()
+  var img_return = UIImage()
   var flg: Bool = true
   let Back_image:UIImage = UIImage(named: "Back.png")!
   let night_image:UIImage = UIImage(named: "star3.jpg")!
   
   //@IBOutlet weak var gaso: UILabel!
-  @IBOutlet weak var image1: UIImageView!
+  @IBOutlet weak var img_show: UIImageView!
   
   let return_dark_buttom = UIButton(type: UIButton.ButtonType.system)
   
@@ -28,9 +28,9 @@ class Saveimage: UIViewController {
     self.view.backgroundColor = UIColor.cyan
     
     //画像サイズ
-    image1.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
-    image4 = image3
-    image1.image = image3
+    img_show.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
+    img_return = img_save
+    img_show.image = img_save
     
     // Do any additional setup after loading the view.
     //let darkbutton = UIButton(type: UIButton.ButtonType.system)
@@ -98,7 +98,7 @@ class Saveimage: UIViewController {
   }
   
   @objc func Saveimg(_ sender: UITapGestureRecognizer) {
-    UIImageWriteToSavedPhotosAlbum(image3, self, #selector(self.showResultOfSaveImage(_:didFinishSavingWithError:contextInfo:)), nil)
+    UIImageWriteToSavedPhotosAlbum(img_save, self, #selector(self.showResultOfSaveImage(_:didFinishSavingWithError:contextInfo:)), nil)
     //gaso.text = OpenCVWrapper.openCVGasoString(image3)
     
   }
@@ -161,22 +161,22 @@ class Saveimage: UIViewController {
   
   @objc func dark_or_return(_ sender: Any) {
     if flg == true{
-      UIGraphicsBeginImageContextWithOptions(image1.image!.size, false, 0.0)
-      image1.image!.draw(in:(CGRect(x:0,y:0,width:image1.image!.size.width,height:image1.image!.size.height)))
-      image1.image = UIGraphicsGetImageFromCurrentImageContext()!
+      UIGraphicsBeginImageContextWithOptions(img_show.image!.size, false, 0.0)
+      img_show.image!.draw(in:(CGRect(x:0,y:0,width:img_show.image!.size.width,height:img_show.image!.size.height)))
+      img_show.image = UIGraphicsGetImageFromCurrentImageContext()!
       UIGraphicsEndImageContext()
     
-      UIGraphicsBeginImageContextWithOptions(image3.size, false, 0.0)
-      image3.draw(in:(CGRect(x:0,y:0,width:image3.size.width,height:image3.size.height)))
-      image3 = UIGraphicsGetImageFromCurrentImageContext()!
+      UIGraphicsBeginImageContextWithOptions(img_save.size, false, 0.0)
+      img_save.draw(in:(CGRect(x:0,y:0,width:img_save.size.width,height:img_save.size.height)))
+      img_save = UIGraphicsGetImageFromCurrentImageContext()!
       UIGraphicsEndImageContext()
     
-      image3 = OpenCVWrapper.inthedark(from: image3, nightImage: night_image)
+      img_save = OpenCVWrapper.inthedark(from: img_save, nightImage: night_image)
       //image3 = OpenCVWrapper.inthedark(from: image3)
-      image1.image! = image3
+      img_show.image! = img_save
     }else{
-      image3 = image4
-      image1.image = image4
+      img_save = img_return
+      img_show.image = img_return
     }
     flg.toggle()
     change_buttom()

@@ -11,7 +11,7 @@ import AVFoundation
 
 class ViewController: UIViewController, AVCapturePhotoCaptureDelegate {
   var img7 = UIImage(named:"iwamotoyama_ee-1200x880")!
-  var image2 = UIImage()
+  var img_data = UIImage()
   let shutter_image:UIImage = UIImage(named: "shutter.png")!
   
   @IBOutlet weak var cameraView: UIView!
@@ -115,9 +115,9 @@ class ViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     // JPEG形式で画像データを取得
     let imageData = photo.fileDataRepresentation()
             
-    image2 = UIImage(data: imageData!)!
+    img_data = UIImage(data: imageData!)!
           
-    confirm_button.setImage(image2, for: .normal)
+    confirm_button.setImage(img_data, for: .normal)
           
     take = true
     
@@ -139,13 +139,13 @@ class ViewController: UIViewController, AVCapturePhotoCaptureDelegate {
   }
   func goToNextPage(){
     //指定したIDのSegueを初期化する。同時にパラメータを渡すことができる
-    self.performSegue(withIdentifier: "mySegue", sender:image2)
+    self.performSegue(withIdentifier: "mySegue", sender:img_data)
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "mySegue" {
       let secondViewController = segue.destination as! Saveimage
-      secondViewController.image3 = image2
+      secondViewController.img_save = img_data
     }
   }
   @IBAction func backToTop(segue: UIStoryboardSegue) {}
