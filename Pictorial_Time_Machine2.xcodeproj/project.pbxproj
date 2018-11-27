@@ -14,7 +14,6 @@
 		7482ABC721AD1B5D00E85039 /* S.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7482ABBE21AD1B5D00E85039 /* S.jpg */; };
 		7482ABC821AD1B5D00E85039 /* star6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7482ABBF21AD1B5D00E85039 /* star6.jpg */; };
 		7482ABC921AD1B5D00E85039 /* shutter.png in Resources */ = {isa = PBXBuildFile; fileRef = 7482ABC021AD1B5D00E85039 /* shutter.png */; };
-		7482ABCA21AD1B5D00E85039 /* Back.png in Resources */ = {isa = PBXBuildFile; fileRef = 7482ABC121AD1B5D00E85039 /* Back.png */; };
 		7482ABCB21AD1B5D00E85039 /* star5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7482ABC221AD1B5D00E85039 /* star5.jpg */; };
 		7482ABCC21AD1B5D00E85039 /* star4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7482ABC321AD1B5D00E85039 /* star4.jpg */; };
 		74BF3499216B19D20087F124 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BF3498216B19D20087F124 /* AppDelegate.swift */; };
@@ -24,6 +23,10 @@
 		74BF34A3216B19D40087F124 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74BF34A1216B19D40087F124 /* LaunchScreen.storyboard */; };
 		74BF34AE216B19D40087F124 /* Pictorial_Time_Machine2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BF34AD216B19D40087F124 /* Pictorial_Time_Machine2UITests.swift */; };
 		74BF34B9216B558C0087F124 /* Saveimage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BF34B8216B558C0087F124 /* Saveimage.swift */; };
+		7C464B9F21AD21DD002F1D54 /* SaveButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C464B9E21AD21DD002F1D54 /* SaveButton.png */; };
+		7C464BA021AD21DD002F1D54 /* SaveButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C464B9E21AD21DD002F1D54 /* SaveButton.png */; };
+		7C464BA221AD2258002F1D54 /* Back.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C464BA121AD2258002F1D54 /* Back.png */; };
+		7C464BA321AD2258002F1D54 /* Back.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C464BA121AD2258002F1D54 /* Back.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,7 +49,6 @@
 		7482ABBE21AD1B5D00E85039 /* S.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = S.jpg; sourceTree = "<group>"; };
 		7482ABBF21AD1B5D00E85039 /* star6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = star6.jpg; sourceTree = "<group>"; };
 		7482ABC021AD1B5D00E85039 /* shutter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shutter.png; sourceTree = "<group>"; };
-		7482ABC121AD1B5D00E85039 /* Back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Back.png; sourceTree = "<group>"; };
 		7482ABC221AD1B5D00E85039 /* star5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = star5.jpg; sourceTree = "<group>"; };
 		7482ABC321AD1B5D00E85039 /* star4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = star4.jpg; sourceTree = "<group>"; };
 		74BF3495216B19D20087F124 /* Pictorial_Time_Machine2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pictorial_Time_Machine2.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -60,7 +62,8 @@
 		74BF34AD216B19D40087F124 /* Pictorial_Time_Machine2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pictorial_Time_Machine2UITests.swift; sourceTree = "<group>"; };
 		74BF34AF216B19D40087F124 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		74BF34B8216B558C0087F124 /* Saveimage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Saveimage.swift; sourceTree = "<group>"; };
-		F8AF1F0321A2B28000D69E98 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = Pictorial_Time_Machine2/opencv2.framework; sourceTree = "<group>"; };
+		7C464B9E21AD21DD002F1D54 /* SaveButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SaveButton.png; sourceTree = "<group>"; };
+		7C464BA121AD2258002F1D54 /* Back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Back.png; path = ../../../../Downloads/Back.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,9 +93,10 @@
 				7482ABBE21AD1B5D00E85039 /* S.jpg */,
 				7482ABBF21AD1B5D00E85039 /* star6.jpg */,
 				7482ABC021AD1B5D00E85039 /* shutter.png */,
-				7482ABC121AD1B5D00E85039 /* Back.png */,
 				7482ABC221AD1B5D00E85039 /* star5.jpg */,
 				7482ABC321AD1B5D00E85039 /* star4.jpg */,
+				7C464B9E21AD21DD002F1D54 /* SaveButton.png */,
+				7C464BA121AD2258002F1D54 /* Back.png */,
 			);
 			path = Image;
 			sourceTree = "<group>";
@@ -146,7 +150,6 @@
 		F8AF1F0221A2B27F00D69E98 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F8AF1F0321A2B28000D69E98 /* opencv2.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -233,12 +236,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C464BA221AD2258002F1D54 /* Back.png in Resources */,
 				7482ABCB21AD1B5D00E85039 /* star5.jpg in Resources */,
 				7482ABC821AD1B5D00E85039 /* star6.jpg in Resources */,
 				74BF34A3216B19D40087F124 /* LaunchScreen.storyboard in Resources */,
-				7482ABCA21AD1B5D00E85039 /* Back.png in Resources */,
 				74BF34A0216B19D40087F124 /* Assets.xcassets in Resources */,
 				7482ABC521AD1B5D00E85039 /* star3.jpg in Resources */,
+				7C464B9F21AD21DD002F1D54 /* SaveButton.png in Resources */,
 				7482ABC721AD1B5D00E85039 /* S.jpg in Resources */,
 				74BF349E216B19D20087F124 /* Main.storyboard in Resources */,
 				7482ABC621AD1B5D00E85039 /* star2.jpg in Resources */,
@@ -252,6 +256,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C464BA321AD2258002F1D54 /* Back.png in Resources */,
+				7C464BA021AD21DD002F1D54 /* SaveButton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,19 +437,19 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 25EETL72K5;
+				DEVELOPMENT_TEAM = TZU737M6K3;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pictorial_Time_Machine2",
 				);
 				INFOPLIST_FILE = Pictorial_Time_Machine2/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "Pictorial-Time-Machine2";
+				PRODUCT_BUNDLE_IDENTIFIER = "ie.Pictorial-Time-Machine2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Pictorial_Time_Machine2/Pictorial_Time_Machine2-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -458,19 +464,19 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 25EETL72K5;
+				DEVELOPMENT_TEAM = TZU737M6K3;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pictorial_Time_Machine2",
 				);
 				INFOPLIST_FILE = Pictorial_Time_Machine2/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "Pictorial-Time-Machine2";
+				PRODUCT_BUNDLE_IDENTIFIER = "ie.Pictorial-Time-Machine2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Pictorial_Time_Machine2/Pictorial_Time_Machine2-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
