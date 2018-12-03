@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 
 class Saveimage: UIViewController {
-  
+  var age = 0
   var img7 = UIImage(named:"iwamotoyama_ee-1200x880")!
   var img_save = UIImage()
   var img_return = UIImage()
@@ -25,6 +25,8 @@ class Saveimage: UIViewController {
     let night_image2:UIImage = UIImage(named: "star2.jpg")!
     let night_image1:UIImage = UIImage(named: "star1.jpg")!
   let Save_image:UIImage = UIImage(named: "SaveButton.png")!
+  let fakelabel_night = UILabel()
+  let fakelabel_evening = UILabel()
     
   let indicator = UIActivityIndicatorView()
   
@@ -55,15 +57,24 @@ class Saveimage: UIViewController {
     // ラベルを設定する
     backbutton.setImage(Back_image, for: .normal)
     savebutton.setImage(Save_image, for: .normal)
+    fakelabel_night.text = "🌙"
+    fakelabel_evening.text = "🌆"
     
     // サイズ
-    backbutton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+    backbutton.frame = CGRect(x: 0, y: 0, width: 40, height: 30)
     savebutton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+    fakelabel_night.frame = CGRect(x: 0, y: 0, width: 45, height: 45)
+    fakelabel_evening.frame = CGRect(x: 0, y: 0, width: 45, height: 45)
     
     // 位置
-    backbutton.layer.position = CGPoint(x: 40 , y: self.view.frame.height - 20)
-    savebutton.layer.position = CGPoint(x: self.view.frame.width - 45, y:self.view.frame.height - 20)
+    backbutton.layer.position = CGPoint(x: 40 , y: self.view.frame.height - 25)
+    savebutton.layer.position = CGPoint(x: self.view.frame.width - 45, y:self.view.frame.height - 25)
+    fakelabel_night.layer.position = CGPoint(x: self.view.frame.width/4+25, y:self.view.frame.height - 25)
+    fakelabel_evening.layer.position = CGPoint(x: self.view.frame.width/2+5, y:self.view.frame.height - 25)
     
+    
+    fakelabel_night.font = UIFont.systemFont(ofSize: 30)
+    fakelabel_evening.font = UIFont.systemFont(ofSize: 30)
     // 背景色
     //backbutton.backgroundColor = UIColor.white
     //savebutton.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
@@ -71,15 +82,19 @@ class Saveimage: UIViewController {
     // 枠の太さ
     
     // 枠の色
-    //savebutton.layer.borderColor = UIColor.white.cgColor
+    //return_dark_buttom.layer.borderColor = UIColor.white.cgColor
+    //fakelabel_evening.layer.borderColor = UIColor.white.cgColor
     
     // 枠に丸み
-    //backbutton.layer.cornerRadius = 25
-    //savebutton.layer.cornerRadius = 25
+    //return_dark_buttom.layer.cornerRadius = 25
+    //fakelabel_evening.layer.cornerRadius = 25
     
     // viewに追加する
     self.view.addSubview(backbutton)
     self.view.addSubview(savebutton)
+    self.view.addSubview(fakelabel_night)
+    self.view.addSubview(fakelabel_evening)
+    
     
     //NightボタンとReturnボタンを切り替える
     change_buttom_dark()
@@ -113,13 +128,12 @@ class Saveimage: UIViewController {
     self.return_dark_buttom.addTarget(self, action: #selector(dark_or_return(_:)), for: UIControl.Event.touchUpInside)
     return_dark_buttom.setTitle(title, for: UIControl.State.normal)
     return_dark_buttom.setTitleColor(UIColor.white, for: UIControl.State.normal)
-    return_dark_buttom.titleLabel!.font = UIFont.systemFont(ofSize: 35)
-    return_dark_buttom.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
-    return_dark_buttom.layer.position = CGPoint(x: self.view.frame.width/4+20, y:self.view.frame.height - 20)
-    //return_dark_buttom.backgroundColor = UIColor.black.withAlphaComponent(1)
-    //return_dark_buttom.layer.borderWidth = 2
-    //return_dark_buttom.layer.borderColor = UIColor.white.cgColor
-    //return_dark_buttom.layer.cornerRadius = 25
+    return_dark_buttom.titleLabel!.font = UIFont.systemFont(ofSize: 30)
+    return_dark_buttom.frame = CGRect(x: 0, y: 0, width: 45, height: 45)
+    return_dark_buttom.layer.position = CGPoint(x: self.view.frame.width/4+20, y:self.view.frame.height - 25)
+    return_dark_buttom.layer.borderWidth = 2
+    return_dark_buttom.layer.cornerRadius = 15
+
     self.view.addSubview(return_dark_buttom)
   }
     
@@ -136,13 +150,12 @@ class Saveimage: UIViewController {
         self.return_evening_buttom.addTarget(self, action: #selector(evening_or_return(_:)), for: UIControl.Event.touchUpInside)
         return_evening_buttom.setTitle(title, for: UIControl.State.normal)
         return_evening_buttom.setTitleColor(UIColor.white, for: UIControl.State.normal)
-        return_evening_buttom.titleLabel!.font = UIFont.systemFont(ofSize: 35)
-        return_evening_buttom.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
-        return_evening_buttom.layer.position = CGPoint(x: self.view.frame.width/2, y:self.view.frame.height - 20)
+        return_evening_buttom.titleLabel!.font = UIFont.systemFont(ofSize: 30)
+        return_evening_buttom.frame = CGRect(x: 0, y: 0, width: 45, height: 45)
+        return_evening_buttom.layer.position = CGPoint(x: self.view.frame.width/2, y:self.view.frame.height - 25)
         //return_dark_buttom.backgroundColor = UIColor.black.withAlphaComponent(1)
-        //return_dark_buttom.layer.borderWidth = 2
-        //return_dark_buttom.layer.borderColor = UIColor.white.cgColor
-        //return_dark_buttom.layer.cornerRadius = 25
+        return_evening_buttom.layer.borderWidth = 2
+        return_evening_buttom.layer.cornerRadius = 15
         self.view.addSubview(return_evening_buttom)
     }
   
@@ -211,6 +224,11 @@ class Saveimage: UIViewController {
   @objc func dark_or_return(_ sender: Any) {
     if flg_dark == true{
         return_evening_buttom.isHidden = true
+        fakelabel_night.isHidden = true
+        fakelabel_evening.isHidden = false
+        self.view.addSubview(fakelabel_night)
+        return_dark_buttom.layer.borderColor = UIColor.black.cgColor
+        return_dark_buttom.backgroundColor = UIColor.white.withAlphaComponent(0.5)
       DispatchQueue.main.async(execute: {
         self.indicator.startAnimating()
       })
@@ -266,6 +284,9 @@ class Saveimage: UIViewController {
       })
     }else{
       return_evening_buttom.isHidden = false
+      fakelabel_evening.isHidden = true
+      return_dark_buttom.layer.borderColor = UIColor.black.cgColor
+      return_dark_buttom.backgroundColor = UIColor.black.withAlphaComponent(1)
       img_save = img_return
       img_show.image = img_return
       flg_dark.toggle()
@@ -276,6 +297,11 @@ class Saveimage: UIViewController {
     @objc func evening_or_return(_ sender: Any) {
         if flg_evening == true{
             return_dark_buttom.isHidden = true
+            fakelabel_night.isHidden = false
+            fakelabel_evening.isHidden = true
+            return_evening_buttom.layer.borderColor = UIColor.black.cgColor
+            return_evening_buttom.backgroundColor = UIColor.white.withAlphaComponent(0.5)
+
             DispatchQueue.main.async(execute: {
                 self.indicator.startAnimating()
             })
@@ -331,6 +357,9 @@ class Saveimage: UIViewController {
             })
         }else{
             return_dark_buttom.isHidden = false
+            fakelabel_night.isHidden = true
+            return_evening_buttom.layer.borderColor = UIColor.black.cgColor
+            return_evening_buttom.backgroundColor = UIColor.black.withAlphaComponent(1)
             img_save = img_return
             img_show.image = img_return
             flg_evening.toggle()

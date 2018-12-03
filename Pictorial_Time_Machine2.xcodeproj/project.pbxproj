@@ -25,8 +25,9 @@
 		74BF34B9216B558C0087F124 /* Saveimage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BF34B8216B558C0087F124 /* Saveimage.swift */; };
 		7C464B9F21AD21DD002F1D54 /* SaveButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C464B9E21AD21DD002F1D54 /* SaveButton.png */; };
 		7C464BA021AD21DD002F1D54 /* SaveButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C464B9E21AD21DD002F1D54 /* SaveButton.png */; };
-		7C464BA221AD2258002F1D54 /* Back.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C464BA121AD2258002F1D54 /* Back.png */; };
-		7C464BA321AD2258002F1D54 /* Back.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C464BA121AD2258002F1D54 /* Back.png */; };
+		7C8F4F2221B2A9950070818A /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C8F4F2121B2A9940070818A /* opencv2.framework */; };
+		7C8F4F2321B2A9950070818A /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C8F4F2121B2A9940070818A /* opencv2.framework */; };
+		7C8F506C21B515720070818A /* Back.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C8F506B21B515720070818A /* Back.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,7 +64,8 @@
 		74BF34AF216B19D40087F124 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		74BF34B8216B558C0087F124 /* Saveimage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Saveimage.swift; sourceTree = "<group>"; };
 		7C464B9E21AD21DD002F1D54 /* SaveButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SaveButton.png; sourceTree = "<group>"; };
-		7C464BA121AD2258002F1D54 /* Back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Back.png; path = ../../../../Downloads/Back.png; sourceTree = "<group>"; };
+		7C8F4F2121B2A9940070818A /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
+		7C8F506B21B515720070818A /* Back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Back.png; path = ../../../../Downloads/Back.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C8F4F2221B2A9950070818A /* opencv2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C8F4F2321B2A9950070818A /* opencv2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,7 +100,7 @@
 				7482ABC221AD1B5D00E85039 /* star5.jpg */,
 				7482ABC321AD1B5D00E85039 /* star4.jpg */,
 				7C464B9E21AD21DD002F1D54 /* SaveButton.png */,
-				7C464BA121AD2258002F1D54 /* Back.png */,
+				7C8F506B21B515720070818A /* Back.png */,
 			);
 			path = Image;
 			sourceTree = "<group>";
@@ -129,6 +133,7 @@
 				74674C5B2173827000C9E32D /* OpenCVWrapper.h */,
 				74674C5C2173827000C9E32D /* OpenCVWrapper.mm */,
 				74BF34B8216B558C0087F124 /* Saveimage.swift */,
+				7C8F4F2121B2A9940070818A /* opencv2.framework */,
 				7482ABBA21AD1B5D00E85039 /* Image */,
 				74BF349F216B19D40087F124 /* Assets.xcassets */,
 				74BF34A1216B19D40087F124 /* LaunchScreen.storyboard */,
@@ -236,7 +241,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7C464BA221AD2258002F1D54 /* Back.png in Resources */,
+				7C8F506C21B515720070818A /* Back.png in Resources */,
 				7482ABCB21AD1B5D00E85039 /* star5.jpg in Resources */,
 				7482ABC821AD1B5D00E85039 /* star6.jpg in Resources */,
 				74BF34A3216B19D40087F124 /* LaunchScreen.storyboard in Resources */,
@@ -256,7 +261,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7C464BA321AD2258002F1D54 /* Back.png in Resources */,
 				7C464BA021AD21DD002F1D54 /* SaveButton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
