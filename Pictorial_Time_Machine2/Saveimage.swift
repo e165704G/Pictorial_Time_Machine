@@ -27,8 +27,7 @@ class Saveimage: UIViewController, UIImagePickerControllerDelegate, UINavigation
     let night_image1:UIImage = UIImage(named: "star1.jpg")!
   let Save_image:UIImage = UIImage(named: "SaveButton.png")!
   
-  let indicator = UIActivityIndicatorView()
-  
+  let imageView = UIImageView()
   //@IBOutlet weak var gaso: UILabel!
   @IBOutlet weak var img_show: UIImageView!
   
@@ -79,20 +78,6 @@ class Saveimage: UIViewController, UIImagePickerControllerDelegate, UINavigation
     //NightボタンとReturnボタンを切り替える
     change_buttom_dark()
     change_buttom_evening()
-    
-    //indicatorの設定
-    // UIActivityIndicatorView のスタイルをテンプレートから選択
-    indicator.style = .whiteLarge
-    // 表示位置
-    indicator.center = self.view.center
-    // 色の設定
-    indicator.color = UIColor.black
-    // アニメーション停止と同時に隠す設定
-    indicator.hidesWhenStopped = true
-    // 画面に追加
-    self.view.addSubview(indicator)
-    // 最前面に移動
-    self.view.bringSubviewToFront(indicator)
   }
   
   // カメラロールから写真を選択する処理
@@ -249,7 +234,7 @@ class Saveimage: UIViewController, UIImagePickerControllerDelegate, UINavigation
       return_dark_buttom.layer.borderColor = UIColor.black.cgColor
       return_dark_buttom.backgroundColor = UIColor.white.withAlphaComponent(0.5)
       DispatchQueue.main.async(execute: {
-        self.indicator.startAnimating()
+        self.start()
       })
       DispatchQueue.main.asyncAfter(deadline: .now() + 1
         , execute: {
@@ -286,7 +271,6 @@ class Saveimage: UIViewController, UIImagePickerControllerDelegate, UINavigation
              }
             
           self.img_show.image! = self.img_save
-          self.indicator.stopAnimating()
           self.flg_dark.toggle()
           self.change_buttom_dark()
       })
@@ -311,7 +295,7 @@ class Saveimage: UIViewController, UIImagePickerControllerDelegate, UINavigation
           return_evening_buttom.backgroundColor = UIColor.white.withAlphaComponent(0.5)
 
           DispatchQueue.main.async(execute: {
-              self.indicator.startAnimating()
+              self.start()
           })
           DispatchQueue.main.asyncAfter(deadline: .now() + 1
               , execute: {
@@ -326,7 +310,6 @@ class Saveimage: UIViewController, UIImagePickerControllerDelegate, UINavigation
                 UIGraphicsEndImageContext()
                 self.img_save = OpenCVWrapper.intheEvening(from: self.img_save, nightImage: self.night_image1)
                 self.img_show.image! = self.img_save
-                self.indicator.stopAnimating()
                 self.flg_evening.toggle()
                 self.change_buttom_evening()
           })
@@ -336,5 +319,56 @@ class Saveimage: UIViewController, UIImagePickerControllerDelegate, UINavigation
           flg_evening.toggle()
           change_buttom_evening()
       }
+    }
+    
+    @objc func start(){
+        let sunmoon1 = UIImage(named:"sunmoon1.PNG")!
+        let sunmoon2 = UIImage(named:"sunmoon2.PNG")!
+        let sunmoon3 = UIImage(named:"sunmoon3.PNG")!
+        let sunmoon4 = UIImage(named:"sunmoon4.PNG")!
+        
+        var imageListArray : Array<UIImage> = []
+        
+        imageListArray.append(sunmoon1)
+        imageListArray.append(sunmoon2)
+        imageListArray.append(sunmoon3)
+        imageListArray.append(sunmoon4)
+        
+        let screenWidth = self.view.bounds.width
+        let screenHeight = self.view.bounds.height
+        
+        let imageWidth = sunmoon1.size.width/6
+        let imageHeight = sunmoon1.size.height/6
+        
+        let imageView:UIImageView = UIImageView(image:nil)
+        // 画像サイズからImageViewの大きさを設定していく
+        let rect = CGRect(x:100,
+                          y:100,
+                          width:imageWidth,
+                          height:imageHeight )
+        
+        imageView.frame = rect
+        // 画像が画面中央にくるように位置合わせ
+        imageView.center = CGPoint(x:screenWidth/2, y:screenHeight/2)
+        
+        self.view.addSubview(imageView)
+        // 画像Arrayをアニメーションにセット
+        imageView.animationImages = imageListArray
+        // 間隔（秒単位）
+        imageView.animationDuration = 3.5
+        // 繰り返し
+        imageView.animationRepeatCount = 1
+        // アニメーションを開始
+        imageView.startAnimating()
+        
+        self.view.bringSubviewToFront(imageView)
+        // アニメーションを終了
+        //imageView.stopAnimating()
+        
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
 }
