@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class Saveimage: UIViewController {
+class Saveimage: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
   var age = 0
   var img7 = UIImage(named:"iwamotoyama_ee-1200x880")!
   var img_save = UIImage()
@@ -17,6 +17,7 @@ class Saveimage: UIViewController {
   var flg_dark: Bool = true
   var flg_evening: Bool = true
   let Back_image:UIImage = UIImage(named: "Back.png")!
+  let choose_image:UIImage = UIImage(named: "choose.png")!
     let night_imageS:UIImage = UIImage(named: "S.jpg")!
     let night_image6:UIImage = UIImage(named: "star6.jpg")!
     let night_image5:UIImage = UIImage(named: "star5.jpg")!
@@ -25,9 +26,7 @@ class Saveimage: UIViewController {
     let night_image2:UIImage = UIImage(named: "star2.jpg")!
     let night_image1:UIImage = UIImage(named: "star1.jpg")!
   let Save_image:UIImage = UIImage(named: "SaveButton.png")!
-  let fakelabel_night = UILabel()
-  let fakelabel_evening = UILabel()
-    
+  
   let indicator = UIActivityIndicatorView()
   
   //@IBOutlet weak var gaso: UILabel!
@@ -35,6 +34,7 @@ class Saveimage: UIViewController {
   
   let return_dark_buttom = UIButton(type: UIButton.ButtonType.system)
   let return_evening_buttom = UIButton(type: UIButton.ButtonType.system)
+  let select_buttom = UIButton()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -53,48 +53,28 @@ class Saveimage: UIViewController {
     // ボタンを押した時に実行するメソッドを指定
     backbutton.addTarget(self, action: #selector(backpage(_:)), for: UIControl.Event.touchUpInside)
     savebutton.addTarget(self, action: #selector(Saveimg(_:)), for: UIControl.Event.touchUpInside)
+    select_buttom.addTarget(self, action: #selector(choosePicture), for: UIControl.Event.touchUpInside)
     
     // ラベルを設定する
     backbutton.setImage(Back_image, for: .normal)
     savebutton.setImage(Save_image, for: .normal)
-    fakelabel_night.text = "🌙"
-    fakelabel_evening.text = "🌆"
+    select_buttom.setImage(choose_image, for: .normal)
+    
     
     // サイズ
     backbutton.frame = CGRect(x: 0, y: 0, width: 40, height: 30)
-    savebutton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-    fakelabel_night.frame = CGRect(x: 0, y: 0, width: 45, height: 45)
-    fakelabel_evening.frame = CGRect(x: 0, y: 0, width: 45, height: 45)
+    savebutton.frame = CGRect(x: 0, y: 0, width: 40, height: 30)
+    select_buttom.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
     
     // 位置
     backbutton.layer.position = CGPoint(x: 40 , y: self.view.frame.height - 25)
-    savebutton.layer.position = CGPoint(x: self.view.frame.width - 45, y:self.view.frame.height - 25)
-    fakelabel_night.layer.position = CGPoint(x: self.view.frame.width/4+25, y:self.view.frame.height - 25)
-    fakelabel_evening.layer.position = CGPoint(x: self.view.frame.width/2+5, y:self.view.frame.height - 25)
-    
-    
-    fakelabel_night.font = UIFont.systemFont(ofSize: 30)
-    fakelabel_evening.font = UIFont.systemFont(ofSize: 30)
-    // 背景色
-    //backbutton.backgroundColor = UIColor.white
-    //savebutton.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
-    
-    // 枠の太さ
-    
-    // 枠の色
-    //return_dark_buttom.layer.borderColor = UIColor.white.cgColor
-    //fakelabel_evening.layer.borderColor = UIColor.white.cgColor
-    
-    // 枠に丸み
-    //return_dark_buttom.layer.cornerRadius = 25
-    //fakelabel_evening.layer.cornerRadius = 25
+    savebutton.layer.position = CGPoint(x: self.view.frame.width - 40, y:self.view.frame.height - 25)
+    select_buttom.layer.position = CGPoint(x: self.view.frame.width*2/3+10, y: self.view.frame.height - 25)
     
     // viewに追加する
     self.view.addSubview(backbutton)
     self.view.addSubview(savebutton)
-    self.view.addSubview(fakelabel_night)
-    self.view.addSubview(fakelabel_evening)
-    
+    self.view.addSubview(select_buttom)
     
     //NightボタンとReturnボタンを切り替える
     change_buttom_dark()
@@ -115,9 +95,77 @@ class Saveimage: UIViewController {
     self.view.bringSubviewToFront(indicator)
   }
   
+  // カメラロールから写真を選択する処理
+  @objc func choosePicture() {
+    if let dir = FileManager.default.urls( for: .documentDirectory, in: .userDomainMask ).first {
+      let path_file_name = dir.appendingPathComponent("Image")
+      
+      do {
+        
+        let text = try String( contentsOf: path_file_name, encoding: String.Encoding.utf8 )
+        print( text )
+        
+      } catch {
+        //エラー処理
+      }
+    }
+    // カメラロールが利用可能か？
+    if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+      // 写真を選ぶビュー
+      let pickerView = UIImagePickerController()
+      // 写真の選択元をカメラロールにする
+      // 「.camera」にすればカメラを起動できる
+      pickerView.sourceType = .photoLibrary
+      // デリゲート
+      pickerView.delegate = self
+      // ビューに表示
+      self.present(pickerView, animated: true)
+    }
+  }
+  
+  // 写真を選んだ後に呼ばれる処理
+  func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    // 選択した写真を取得する
+    let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+    // 写真を選ぶビューを引っ込める
+    self.dismiss(animated: true)
+    
+    //一度画像を元に戻す
+    self.img_save = img_return
+    self.img_show.image = img_return
+    
+    //加工の部分
+    return_dark_buttom.backgroundColor = UIColor.white.withAlphaComponent(0.5)
+    
+    UIGraphicsBeginImageContextWithOptions(self.img_show.image!.size, false, 0.0)
+    self.img_show.image!.draw(in:(CGRect(x:0,y:0,width:self.img_show.image!.size.width,height:self.img_show.image!.size.height)))
+    self.img_show.image = UIGraphicsGetImageFromCurrentImageContext()!
+    UIGraphicsEndImageContext()
+    UIGraphicsBeginImageContextWithOptions(self.img_save.size, false, 0.0)
+    self.img_save.draw(in:(CGRect(x:0,y:0,width:self.img_save.size.width,height:self.img_save.size.height)))
+    self.img_save = UIGraphicsGetImageFromCurrentImageContext()!
+    UIGraphicsEndImageContext()
+    
+    self.img_save = OpenCVWrapper.inthedark(from: self.img_save, nightImage: image)
+    
+    self.img_show.image! = self.img_save
+    
+    //ボタンが切り替わるようにする
+    flg_dark = false
+    self.change_buttom_dark()
+    
+    flg_evening = true
+    change_buttom_evening()
+    
+  }
+  
+  
+  
   func change_buttom_dark(){
     if flg_dark == true{
       title = "🌙"
+      return_dark_buttom.layer.borderColor = UIColor.black.cgColor
+      return_dark_buttom.backgroundColor = UIColor.black.withAlphaComponent(1)
     }else{
       title = "☀️"
     }
@@ -140,6 +188,8 @@ class Saveimage: UIViewController {
     func change_buttom_evening(){
         if flg_evening == true{
             title = "🌆"
+          return_evening_buttom.layer.borderColor = UIColor.black.cgColor
+          return_evening_buttom.backgroundColor = UIColor.black.withAlphaComponent(1)
         }else{
             title = "☀️"
         }
@@ -191,48 +241,17 @@ class Saveimage: UIViewController {
     
   }
   
-  
-  /*@IBAction func toGrayScaleButtonTouched(_ sender: Any) {
-   
-   
-   UIGraphicsBeginImageContextWithOptions(image1.image!.size, false, 0.0)
-   image1.image!.draw(in:(CGRect(x:0,y:0,width:image1.image!.size.width,height:image1.image!.size.height)))
-   image1.image = UIGraphicsGetImageFromCurrentImageContext()!
-   UIGraphicsEndImageContext()
-   
-   image1.image = OpenCVWrapper.makeGray(from: image1.image!)
-   image3 = OpenCVWrapper.makeGray(from: image1.image!)
-   
-   }*/
-  
-  
-  /*@IBAction func getColor(_ sender: Any) {
-   //画像の向き固定
-   UIGraphicsBeginImageContextWithOptions(image1.image!.size, false, 0.0)
-   image1.image!.draw(in:(CGRect(x:0,y:0,width:image1.image!.size.width,height:image1.image!.size.height)))
-   image1.image = UIGraphicsGetImageFromCurrentImageContext()!
-   UIGraphicsEndImageContext()
-   
-   
-   image1.image = OpenCVWrapper.whiteGet(from: image1.image!)
-   image3 = OpenCVWrapper.whiteGet(from: image1.image!)
-   }
-   
-   
-   */
-  
   @objc func dark_or_return(_ sender: Any) {
     if flg_dark == true{
-        return_evening_buttom.isHidden = true
-        fakelabel_night.isHidden = true
-        fakelabel_evening.isHidden = false
-        self.view.addSubview(fakelabel_night)
-        return_dark_buttom.layer.borderColor = UIColor.black.cgColor
-        return_dark_buttom.backgroundColor = UIColor.white.withAlphaComponent(0.5)
+      img_save = img_return
+      flg_evening = true
+      change_buttom_evening()
+      return_dark_buttom.layer.borderColor = UIColor.black.cgColor
+      return_dark_buttom.backgroundColor = UIColor.white.withAlphaComponent(0.5)
       DispatchQueue.main.async(execute: {
         self.indicator.startAnimating()
       })
-      DispatchQueue.main.asyncAfter(deadline: .now() + 3
+      DispatchQueue.main.asyncAfter(deadline: .now() + 1
         , execute: {
           UIGraphicsBeginImageContextWithOptions(self.img_show.image!.size, false, 0.0)
           self.img_show.image!.draw(in:(CGRect(x:0,y:0,width:self.img_show.image!.size.width,height:self.img_show.image!.size.height)))
@@ -250,121 +269,72 @@ class Saveimage: UIViewController {
              
              if ( random == 0 ) {
                 self.img_save = OpenCVWrapper.inthedark(from: self.img_save, nightImage: self.night_imageS)
-             self.img_show.image! = self.img_save
-             
              }else if( random == 1 ) {
                 self.img_save = OpenCVWrapper.inthedark(from: self.img_save, nightImage: self.night_image1)
-             self.img_show.image! = self.img_save
              }else if( random == 2 ) {
                 self.img_save = OpenCVWrapper.inthedark(from: self.img_save, nightImage: self.night_image2)
-             self.img_show.image! = self.img_save
              }else if( random == 3 ) {
                 self.img_save = OpenCVWrapper.inthedark(from: self.img_save, nightImage: self.night_image3)
-             self.img_show.image! = self.img_save
              }else if( random == 4 ) {
                 self.img_save = OpenCVWrapper.inthedark(from: self.img_save, nightImage: self.night_image4)
-             self.img_show.image! = self.img_save
              }else if( random == 5 ) {
                 self.img_save = OpenCVWrapper.inthedark(from: self.img_save, nightImage: self.night_image5)
-             self.img_show.image! = self.img_save
              }else if( random == 6 ) {
                 self.img_save = OpenCVWrapper.inthedark(from: self.img_save, nightImage: self.night_image6)
-             self.img_show.image! = self.img_save
              }else {
                 self.img_save = OpenCVWrapper.inthedark(from: self.img_save, nightImage: self.night_image3)
-             self.img_show.image! = self.img_save
              }
             
-          //self.img_save = OpenCVWrapper.inthedark(from: self.img_save, nightImage: self.night_image)
-          //image3 = OpenCVWrapper.inthedark(from: image3)
           self.img_show.image! = self.img_save
           self.indicator.stopAnimating()
           self.flg_dark.toggle()
-            self.change_buttom_dark()
+          self.change_buttom_dark()
       })
     }else{
-      return_evening_buttom.isHidden = false
-      fakelabel_evening.isHidden = true
-      return_dark_buttom.layer.borderColor = UIColor.black.cgColor
-      return_dark_buttom.backgroundColor = UIColor.black.withAlphaComponent(1)
+      if flg_evening == false{
+        flg_evening.toggle()
+        change_buttom_evening()
+      }
       img_save = img_return
       img_show.image = img_return
       flg_dark.toggle()
-        change_buttom_dark()
+      change_buttom_dark()
     }
   }
     
     @objc func evening_or_return(_ sender: Any) {
         if flg_evening == true{
-            return_dark_buttom.isHidden = true
-            fakelabel_night.isHidden = false
-            fakelabel_evening.isHidden = true
-            return_evening_buttom.layer.borderColor = UIColor.black.cgColor
-            return_evening_buttom.backgroundColor = UIColor.white.withAlphaComponent(0.5)
+          img_save = img_return
+          flg_dark = true
+          change_buttom_dark()
+          return_evening_buttom.layer.borderColor = UIColor.black.cgColor
+          return_evening_buttom.backgroundColor = UIColor.white.withAlphaComponent(0.5)
 
-            DispatchQueue.main.async(execute: {
-                self.indicator.startAnimating()
-            })
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3
-                , execute: {
-                    UIGraphicsBeginImageContextWithOptions(self.img_show.image!.size, false, 0.0)
-                    self.img_show.image!.draw(in:(CGRect(x:0,y:0,width:self.img_show.image!.size.width,height:self.img_show.image!.size.height)))
-                    self.img_show.image = UIGraphicsGetImageFromCurrentImageContext()!
-                    UIGraphicsEndImageContext()
+          DispatchQueue.main.async(execute: {
+              self.indicator.startAnimating()
+          })
+          DispatchQueue.main.asyncAfter(deadline: .now() + 1
+              , execute: {
+                UIGraphicsBeginImageContextWithOptions(self.img_show.image!.size, false, 0.0)
+                self.img_show.image!.draw(in:(CGRect(x:0,y:0,width:self.img_show.image!.size.width,height:self.img_show.image!.size.height)))
+                self.img_show.image = UIGraphicsGetImageFromCurrentImageContext()!
+                UIGraphicsEndImageContext()
                     
-                    UIGraphicsBeginImageContextWithOptions(self.img_save.size, false, 0.0)
-                    self.img_save.draw(in:(CGRect(x:0,y:0,width:self.img_save.size.width,height:self.img_save.size.height)))
-                    self.img_save = UIGraphicsGetImageFromCurrentImageContext()!
-                    UIGraphicsEndImageContext()
-                    
-                    
-                    //ランダムで画像お入れる
-                    let random = arc4random() % 6
-                    
-                    if ( random == 0 ) {
-                        self.img_save = OpenCVWrapper.intheEvening(from: self.img_save, nightImage: self.night_imageS)
-                        self.img_show.image! = self.img_save
-                        
-                    }else if( random == 1 ) {
-                        self.img_save = OpenCVWrapper.intheEvening(from: self.img_save, nightImage: self.night_image1)
-                        self.img_show.image! = self.img_save
-                    }else if( random == 2 ) {
-                        self.img_save = OpenCVWrapper.intheEvening(from: self.img_save, nightImage: self.night_image2)
-                        self.img_show.image! = self.img_save
-                    }else if( random == 3 ) {
-                        self.img_save = OpenCVWrapper.intheEvening(from: self.img_save, nightImage: self.night_image3)
-                        self.img_show.image! = self.img_save
-                    }else if( random == 4 ) {
-                        self.img_save = OpenCVWrapper.intheEvening(from: self.img_save, nightImage: self.night_image4)
-                        self.img_show.image! = self.img_save
-                    }else if( random == 5 ) {
-                        self.img_save = OpenCVWrapper.intheEvening(from: self.img_save, nightImage: self.night_image5)
-                        self.img_show.image! = self.img_save
-                    }else if( random == 6 ) {
-                        self.img_save = OpenCVWrapper.intheEvening(from: self.img_save, nightImage: self.night_image6)
-                        self.img_show.image! = self.img_save
-                    }else {
-                        self.img_save = OpenCVWrapper.intheEvening(from: self.img_save, nightImage: self.night_image3)
-                        self.img_show.image! = self.img_save
-                    }
-                    
-                    //self.img_save = OpenCVWrapper.inthedark(from: self.img_save, nightImage: self.night_image)
-                    //image3 = OpenCVWrapper.inthedark(from: image3)
-                    self.img_show.image! = self.img_save
-                    self.indicator.stopAnimating()
-                    self.flg_evening.toggle()
-                    self.change_buttom_evening()
-            })
+                UIGraphicsBeginImageContextWithOptions(self.img_save.size, false, 0.0)
+                self.img_save.draw(in:(CGRect(x:0,y:0,width:self.img_save.size.width,height:self.img_save.size.height)))
+                self.img_save = UIGraphicsGetImageFromCurrentImageContext()!
+                UIGraphicsEndImageContext()
+                self.img_save = OpenCVWrapper.intheEvening(from: self.img_save, nightImage: self.night_image1)
+                self.img_show.image! = self.img_save
+                self.indicator.stopAnimating()
+                self.flg_evening.toggle()
+                self.change_buttom_evening()
+          })
         }else{
-            return_dark_buttom.isHidden = false
-            fakelabel_night.isHidden = true
-            return_evening_buttom.layer.borderColor = UIColor.black.cgColor
-            return_evening_buttom.backgroundColor = UIColor.black.withAlphaComponent(1)
-            img_save = img_return
-            img_show.image = img_return
-            flg_evening.toggle()
-            change_buttom_evening()
-        }
+          img_save = img_return
+          img_show.image = img_return
+          flg_evening.toggle()
+          change_buttom_evening()
+      }
     }
-  
 }
