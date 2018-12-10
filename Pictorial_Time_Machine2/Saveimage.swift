@@ -350,17 +350,18 @@ class Saveimage: UIViewController, UIImagePickerControllerDelegate, UINavigation
         imageView.frame = rect
         // 画像が画面中央にくるように位置合わせ
         imageView.center = CGPoint(x:screenWidth/2, y:screenHeight/2)
-        
+      
         self.view.addSubview(imageView)
         // 画像Arrayをアニメーションにセット
         imageView.animationImages = imageListArray
         // 間隔（秒単位）
-        imageView.animationDuration = 3.5
+        imageView.animationDuration = 1.5
         // 繰り返し
         imageView.animationRepeatCount = 1
         // アニメーションを開始
         imageView.startAnimating()
-        
+        imageView.layer.cornerRadius = imageView.frame.size.width * 0.5
+        imageView.clipsToBounds = true
         self.view.bringSubviewToFront(imageView)
         // アニメーションを終了
         //imageView.stopAnimating()
