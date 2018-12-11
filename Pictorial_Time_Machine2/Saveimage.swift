@@ -10,31 +10,37 @@ import UIKit
 import AVFoundation
 
 class Saveimage: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-  var age = 0
-  var img7 = UIImage(named:"iwamotoyama_ee-1200x880")!
-  var img_save = UIImage()
-  var img_return = UIImage()
+  
+  //昼夜のフラグ設定
   var flg_dark: Bool = true
   var flg_evening: Bool = true
+  
+  //buttomのimage
+  var img_save = UIImage()
+  var img_return = UIImage()
   let Back_image:UIImage = UIImage(named: "Back.png")!
   let choose_image:UIImage = UIImage(named: "choose.png")!
-    let night_imageS:UIImage = UIImage(named: "S.jpg")!
-    let night_image6:UIImage = UIImage(named: "star6.jpg")!
-    let night_image5:UIImage = UIImage(named: "star5.jpg")!
-    let night_image4:UIImage = UIImage(named: "star4.jpg")!
-    let night_image3:UIImage = UIImage(named: "star3.jpg")!
-    let night_image2:UIImage = UIImage(named: "star2.jpg")!
-    let night_image1:UIImage = UIImage(named: "star1.jpg")!
   let Save_image:UIImage = UIImage(named: "SaveButton.png")!
   
-  let imageView = UIImageView()
-  //@IBOutlet weak var gaso: UILabel!
+  //星空のimage
+  let night_imageS:UIImage = UIImage(named: "S.jpg")!
+  let night_image6:UIImage = UIImage(named: "star6.jpg")!
+  let night_image5:UIImage = UIImage(named: "star5.jpg")!
+  let night_image4:UIImage = UIImage(named: "star4.jpg")!
+  let night_image3:UIImage = UIImage(named: "star3.jpg")!
+  let night_image2:UIImage = UIImage(named: "star2.jpg")!
+  let night_image1:UIImage = UIImage(named: "star1.jpg")!
+  
+  //確認画面のview
   @IBOutlet weak var img_show: UIImageView!
   
+  //buttomの定義
   let return_dark_buttom = UIButton(type: UIButton.ButtonType.system)
   let return_evening_buttom = UIButton(type: UIButton.ButtonType.system)
   let select_buttom = UIButton()
-  
+  let backbutton = UIButton()
+  let savebutton = UIButton(type: UIButton.ButtonType.system)
+
   override func viewDidLoad() {
     super.viewDidLoad()
     self.view.backgroundColor = UIColor.black
@@ -43,11 +49,6 @@ class Saveimage: UIViewController, UIImagePickerControllerDelegate, UINavigation
     img_show.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height-50)
     img_return = img_save
     img_show.image = img_save
-    
-    // Do any additional setup after loading the view.
-    //let darkbutton = UIButton(type: UIButton.ButtonType.system)
-    let backbutton = UIButton()
-    let savebutton = UIButton(type: UIButton.ButtonType.system)
     
     // ボタンを押した時に実行するメソッドを指定
     backbutton.addTarget(self, action: #selector(backpage(_:)), for: UIControl.Event.touchUpInside)
@@ -58,7 +59,6 @@ class Saveimage: UIViewController, UIImagePickerControllerDelegate, UINavigation
     backbutton.setImage(Back_image, for: .normal)
     savebutton.setImage(Save_image, for: .normal)
     select_buttom.setImage(choose_image, for: .normal)
-    
     
     // サイズ
     backbutton.frame = CGRect(x: 0, y: 0, width: 40, height: 30)
@@ -82,18 +82,6 @@ class Saveimage: UIViewController, UIImagePickerControllerDelegate, UINavigation
   
   // カメラロールから写真を選択する処理
   @objc func choosePicture() {
-    if let dir = FileManager.default.urls( for: .documentDirectory, in: .userDomainMask ).first {
-      let path_file_name = dir.appendingPathComponent("Image")
-      
-      do {
-        
-        let text = try String( contentsOf: path_file_name, encoding: String.Encoding.utf8 )
-        print( text )
-        
-      } catch {
-        //エラー処理
-      }
-    }
     // カメラロールが利用可能か？
     if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
       // 写真を選ぶビュー
@@ -235,6 +223,7 @@ class Saveimage: UIViewController, UIImagePickerControllerDelegate, UINavigation
       return_dark_buttom.backgroundColor = UIColor.white.withAlphaComponent(0.5)
       DispatchQueue.main.async(execute: {
         self.start()
+        self.touch_able(able: false)
       })
       DispatchQueue.main.asyncAfter(deadline: .now() + 1
         , execute: {
@@ -273,6 +262,7 @@ class Saveimage: UIViewController, UIImagePickerControllerDelegate, UINavigation
           self.img_show.image! = self.img_save
           self.flg_dark.toggle()
           self.change_buttom_dark()
+          self.touch_able(able: true)
       })
     }else{
       if flg_evening == false{
@@ -295,7 +285,8 @@ class Saveimage: UIViewController, UIImagePickerControllerDelegate, UINavigation
           return_evening_buttom.backgroundColor = UIColor.white.withAlphaComponent(0.5)
 
           DispatchQueue.main.async(execute: {
-              self.start()
+            self.start()
+            self.touch_able(able: false)
           })
           DispatchQueue.main.asyncAfter(deadline: .now() + 1
               , execute: {
@@ -312,6 +303,7 @@ class Saveimage: UIViewController, UIImagePickerControllerDelegate, UINavigation
                 self.img_show.image! = self.img_save
                 self.flg_evening.toggle()
                 self.change_buttom_evening()
+                self.touch_able(able: true)
           })
         }else{
           img_save = img_return
@@ -320,7 +312,8 @@ class Saveimage: UIViewController, UIImagePickerControllerDelegate, UINavigation
           change_buttom_evening()
       }
     }
-    
+  
+  //indicator
     @objc func start(){
         let sunmoon1 = UIImage(named:"sunmoon1.PNG")!
         let sunmoon2 = UIImage(named:"sunmoon2.PNG")!
@@ -367,6 +360,15 @@ class Saveimage: UIViewController, UIImagePickerControllerDelegate, UINavigation
         //imageView.stopAnimating()
         
     }
+
+  //buttomの機能ture:on,false:off
+  func touch_able(able:Bool){
+    return_evening_buttom.isUserInteractionEnabled = able
+    return_dark_buttom.isUserInteractionEnabled = able
+    select_buttom.isUserInteractionEnabled = able
+    savebutton.isUserInteractionEnabled = able
+    backbutton.isUserInteractionEnabled = able
+  }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
