@@ -353,7 +353,7 @@ class Saveimage: UIViewController, UIImagePickerControllerDelegate, UINavigation
         imageView.animationRepeatCount = 1
         // アニメーションを開始
         imageView.startAnimating()
-        imageView.layer.cornerRadius = imageView.frame.size.width * 0.5
+        imageView.layer.cornerRadius = imageView.frame.size.width * 0.3
         imageView.clipsToBounds = true
         self.view.bringSubviewToFront(imageView)
         // アニメーションを終了
