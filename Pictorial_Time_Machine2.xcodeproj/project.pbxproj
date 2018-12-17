@@ -31,8 +31,18 @@
 		74BF34B9216B558C0087F124 /* Saveimage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BF34B8216B558C0087F124 /* Saveimage.swift */; };
 		7C464B9F21AD21DD002F1D54 /* SaveButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C464B9E21AD21DD002F1D54 /* SaveButton.png */; };
 		7C464BA021AD21DD002F1D54 /* SaveButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C464B9E21AD21DD002F1D54 /* SaveButton.png */; };
-		7C8F4F2221B2A9950070818A /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C8F4F2121B2A9940070818A /* opencv2.framework */; };
-		7C8F4F2321B2A9950070818A /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C8F4F2121B2A9940070818A /* opencv2.framework */; };
+		7CC83D3C21C38DD000FADF96 /* 1_Primary_logo_on_transparent_167x73.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CC83D3B21C38DD000FADF96 /* 1_Primary_logo_on_transparent_167x73.png */; };
+		7CC83D3D21C38DD000FADF96 /* 1_Primary_logo_on_transparent_167x73.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CC83D3B21C38DD000FADF96 /* 1_Primary_logo_on_transparent_167x73.png */; };
+		7CC83D3F21C38EFC00FADF96 /* 3_White_logo_on_color1_169x73.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CC83D3E21C38EFC00FADF96 /* 3_White_logo_on_color1_169x73.png */; };
+		7CC83D4021C38EFC00FADF96 /* 3_White_logo_on_color1_169x73.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CC83D3E21C38EFC00FADF96 /* 3_White_logo_on_color1_169x73.png */; };
+		7CC83D4521C7716200FADF96 /* アイコン_500×500_textあり .png in Resources */ = {isa = PBXBuildFile; fileRef = 7CC83D4421C7716200FADF96 /* アイコン_500×500_textあり .png */; };
+		7CC83D4621C7716200FADF96 /* アイコン_500×500_textあり .png in Resources */ = {isa = PBXBuildFile; fileRef = 7CC83D4421C7716200FADF96 /* アイコン_500×500_textあり .png */; };
+		7CC83D6321C78DFF00FADF96 /* アイコン_500×500 (2).png in Resources */ = {isa = PBXBuildFile; fileRef = 7CC83D6221C78DFF00FADF96 /* アイコン_500×500 (2).png */; };
+		7CC83D6421C78DFF00FADF96 /* アイコン_500×500 (2).png in Resources */ = {isa = PBXBuildFile; fileRef = 7CC83D6221C78DFF00FADF96 /* アイコン_500×500 (2).png */; };
+		7CC83D6621C7905400FADF96 /* emblemmatic-pictorial-time-machine-logo-5 (1).png in Resources */ = {isa = PBXBuildFile; fileRef = 7CC83D6521C7905400FADF96 /* emblemmatic-pictorial-time-machine-logo-5 (1).png */; };
+		7CC83D6721C7905400FADF96 /* emblemmatic-pictorial-time-machine-logo-5 (1).png in Resources */ = {isa = PBXBuildFile; fileRef = 7CC83D6521C7905400FADF96 /* emblemmatic-pictorial-time-machine-logo-5 (1).png */; };
+		7CC83D6921C7DEB200FADF96 /* pxwOmq0lF9980ZL1545053940_1545053945.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CC83D6821C7DEB200FADF96 /* pxwOmq0lF9980ZL1545053940_1545053945.png */; };
+		7CC83D6A21C7DEB200FADF96 /* pxwOmq0lF9980ZL1545053940_1545053945.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CC83D6821C7DEB200FADF96 /* pxwOmq0lF9980ZL1545053940_1545053945.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,7 +85,12 @@
 		74BF34AF216B19D40087F124 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		74BF34B8216B558C0087F124 /* Saveimage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Saveimage.swift; sourceTree = "<group>"; };
 		7C464B9E21AD21DD002F1D54 /* SaveButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SaveButton.png; sourceTree = "<group>"; };
-		7C8F4F2121B2A9940070818A /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
+		7CC83D3B21C38DD000FADF96 /* 1_Primary_logo_on_transparent_167x73.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1_Primary_logo_on_transparent_167x73.png; sourceTree = "<group>"; };
+		7CC83D3E21C38EFC00FADF96 /* 3_White_logo_on_color1_169x73.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3_White_logo_on_color1_169x73.png; sourceTree = "<group>"; };
+		7CC83D4421C7716200FADF96 /* アイコン_500×500_textあり .png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "アイコン_500×500_textあり .png"; sourceTree = "<group>"; };
+		7CC83D6221C78DFF00FADF96 /* アイコン_500×500 (2).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "アイコン_500×500 (2).png"; sourceTree = "<group>"; };
+		7CC83D6521C7905400FADF96 /* emblemmatic-pictorial-time-machine-logo-5 (1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "emblemmatic-pictorial-time-machine-logo-5 (1).png"; path = "../../../../Downloads/emblemmatic-pictorial-time-machine-logo-5 (1).png"; sourceTree = "<group>"; };
+		7CC83D6821C7DEB200FADF96 /* pxwOmq0lF9980ZL1545053940_1545053945.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pxwOmq0lF9980ZL1545053940_1545053945.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,7 +98,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7C8F4F2221B2A9950070818A /* opencv2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,7 +105,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7C8F4F2321B2A9950070818A /* opencv2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,6 +129,12 @@
 				7482ABC021AD1B5D00E85039 /* shutter.png */,
 				7C464B9E21AD21DD002F1D54 /* SaveButton.png */,
 				3DFE27B521BE68A800864DF6 /* Back.png */,
+				7CC83D4421C7716200FADF96 /* アイコン_500×500_textあり .png */,
+				7CC83D3B21C38DD000FADF96 /* 1_Primary_logo_on_transparent_167x73.png */,
+				7CC83D3E21C38EFC00FADF96 /* 3_White_logo_on_color1_169x73.png */,
+				7CC83D6221C78DFF00FADF96 /* アイコン_500×500 (2).png */,
+				7CC83D6521C7905400FADF96 /* emblemmatic-pictorial-time-machine-logo-5 (1).png */,
+				7CC83D6821C7DEB200FADF96 /* pxwOmq0lF9980ZL1545053940_1545053945.png */,
 			);
 			path = Image;
 			sourceTree = "<group>";
@@ -148,7 +167,6 @@
 				74674C5B2173827000C9E32D /* OpenCVWrapper.h */,
 				74674C5C2173827000C9E32D /* OpenCVWrapper.mm */,
 				74BF34B8216B558C0087F124 /* Saveimage.swift */,
-				7C8F4F2121B2A9940070818A /* opencv2.framework */,
 				7482ABBA21AD1B5D00E85039 /* Image */,
 				74BF349F216B19D40087F124 /* Assets.xcassets */,
 				74BF34A1216B19D40087F124 /* LaunchScreen.storyboard */,
@@ -261,17 +279,23 @@
 				7482ABC821AD1B5D00E85039 /* star6.jpg in Resources */,
 				74BF34A3216B19D40087F124 /* LaunchScreen.storyboard in Resources */,
 				3DFE27C021BE695D00864DF6 /* sunmoon4.PNG in Resources */,
+				7CC83D3C21C38DD000FADF96 /* 1_Primary_logo_on_transparent_167x73.png in Resources */,
+				7CC83D6621C7905400FADF96 /* emblemmatic-pictorial-time-machine-logo-5 (1).png in Resources */,
 				74BF34A0216B19D40087F124 /* Assets.xcassets in Resources */,
 				7482ABC521AD1B5D00E85039 /* star3.jpg in Resources */,
 				7C464B9F21AD21DD002F1D54 /* SaveButton.png in Resources */,
 				7482ABC721AD1B5D00E85039 /* S.jpg in Resources */,
 				3DFE27B621BE68A800864DF6 /* Back.png in Resources */,
+				7CC83D4521C7716200FADF96 /* アイコン_500×500_textあり .png in Resources */,
+				7CC83D6921C7DEB200FADF96 /* pxwOmq0lF9980ZL1545053940_1545053945.png in Resources */,
 				74BF349E216B19D20087F124 /* Main.storyboard in Resources */,
+				7CC83D6321C78DFF00FADF96 /* アイコン_500×500 (2).png in Resources */,
 				7482ABC621AD1B5D00E85039 /* star2.jpg in Resources */,
 				3DFE27BF21BE695D00864DF6 /* sunmoon2.PNG in Resources */,
 				3DFE27B821BE693500864DF6 /* choose.png in Resources */,
 				7482ABC921AD1B5D00E85039 /* shutter.png in Resources */,
 				7482ABCC21AD1B5D00E85039 /* star4.jpg in Resources */,
+				7CC83D3F21C38EFC00FADF96 /* 3_White_logo_on_color1_169x73.png in Resources */,
 				7482ABC421AD1B5D00E85039 /* star1.jpg in Resources */,
 				3DFE27BE21BE695D00864DF6 /* sunmoon1.PNG in Resources */,
 			);
@@ -281,7 +305,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CC83D6721C7905400FADF96 /* emblemmatic-pictorial-time-machine-logo-5 (1).png in Resources */,
+				7CC83D4621C7716200FADF96 /* アイコン_500×500_textあり .png in Resources */,
 				7C464BA021AD21DD002F1D54 /* SaveButton.png in Resources */,
+				7CC83D6421C78DFF00FADF96 /* アイコン_500×500 (2).png in Resources */,
+				7CC83D6A21C7DEB200FADF96 /* pxwOmq0lF9980ZL1545053940_1545053945.png in Resources */,
+				7CC83D4021C38EFC00FADF96 /* 3_White_logo_on_color1_169x73.png in Resources */,
+				7CC83D3D21C38DD000FADF96 /* 1_Primary_logo_on_transparent_167x73.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,7 +491,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3R6E95S92K;
+				DEVELOPMENT_TEAM = TZU737M6K3;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -473,7 +503,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Pictorial-Time-Machine2";
+				PRODUCT_BUNDLE_IDENTIFIER = "ie.com.Pictorial-Time-Machine2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Pictorial_Time_Machine2/Pictorial_Time_Machine2-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -488,7 +518,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3R6E95S92K;
+				DEVELOPMENT_TEAM = TZU737M6K3;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -500,7 +530,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Pictorial-Time-Machine2";
+				PRODUCT_BUNDLE_IDENTIFIER = "ie.com.Pictorial-Time-Machine2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Pictorial_Time_Machine2/Pictorial_Time_Machine2-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
